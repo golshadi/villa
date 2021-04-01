@@ -27,6 +27,9 @@ class CreateVillasTable extends Migration
             $table->string('long');
             $table->string('lat');
             $table->bigInteger('user_id')->unsigned();
+            $table->bigInteger('visit_count')->default(0);
+            $table->string('main_img');
+            $table->integer('score')->nullable();
             $table->integer('status');
             $table->timestamps();
 

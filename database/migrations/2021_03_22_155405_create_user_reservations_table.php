@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,8 +20,8 @@ class CreateUserReservationsTable extends Migration
             $table->string('villa_title');
             $table->string('state');
             $table->string('city');
-            $table->timestamp('entry_date');
-            $table->timestamp('exit_date');
+            $table->timestamp('entry_date')->default(Carbon::now());
+            $table->timestamp('exit_date')->default(Carbon::now());
             $table->bigInteger('cost');
             $table->integer('pay_status');
             $table->bigInteger('villa_id')->unsigned();

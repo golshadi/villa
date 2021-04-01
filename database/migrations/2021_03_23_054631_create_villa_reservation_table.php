@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +17,12 @@ class CreateVillaReservationTable extends Migration
         Schema::create('villa_reservation', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('villa_id')->unsigned();     
-            $table->timestamp('reserve_date');       
+            $table->timestamp('reserve_date')->default(Carbon::now());    
             $table->bigInteger('user_id')->unsigned();
             $table->integer('passengers_number');
             $table->bigInteger('final_cost');
-            $table->timestamp('start_date');
-            $table->timestamp('end_date');
+            $table->timestamp('start_date')->default(Carbon::now());
+            $table->timestamp('end_date')->default(Carbon::now());
             $table->integer('status');
             $table->timestamps();
 

@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -17,7 +18,7 @@ class CreateUserTransactionsTable extends Migration
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->integer('type');
-            $table->timestamp('date');
+            $table->timestamp('date')->default(Carbon::now());
             $table->bigInteger('cost');
             $table->longText('description');
             $table->integer('status');

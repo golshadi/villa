@@ -20,10 +20,10 @@ class CreateVillaRulesTable extends Migration
             $table->bigInteger('special_cost');       
             $table->bigInteger('normal_extra_cost');       
             $table->bigInteger('special_extra_cost');       
-            $table->bigInteger('weekly_discount');       
-            $table->bigInteger('monthly_discount');       
+            $table->bigInteger('weekly_discount')->default(0);       
+            $table->bigInteger('monthly_discount')->default(0);       
             $table->longText('auth_rules');       
-            $table->longText('special_rules');  
+            $table->longText('special_rules')->nullable();  
             $table->integer('min_reserve');     
             $table->integer('max_reserve'); 
             $table->longText('suitable_for');       
