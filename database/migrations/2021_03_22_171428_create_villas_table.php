@@ -21,16 +21,16 @@ class CreateVillasTable extends Migration
             $table->string('story');
             $table->string('state');
             $table->string('city');
-            $table->string('village');
-            $table->string('postal_code');
+            $table->string('village')->nullable();
+            $table->string('postal_code')->nullable();
             $table->text('address');
             $table->string('long');
             $table->string('lat');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('visit_count')->default(0);
-            $table->string('main_img');
+            $table->string('main_img')->nullable();
             $table->integer('score')->nullable();
-            $table->integer('status');
+            $table->integer('status')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

@@ -19,11 +19,11 @@ class CreateVillaInfoTable extends Migration
             $table->longText('general_fac');
             $table->longText('kitchen_fac');
             $table->longText('temp_fac');
-            $table->bigInteger('chef');
-            $table->bigInteger('host');
-            $table->bigInteger('tour_guide');
-            $table->bigInteger('bodyguard');
-            $table->longText('catering');
+            $table->bigInteger('chef')->nullable();
+            $table->bigInteger('host')->nullable();
+            $table->bigInteger('tour_guide')->nullable();
+            $table->bigInteger('bodyguard')->nullable();
+            $table->longText('catering')->nullable();
             $table->timestamps();
 
             $table->foreign('villa_id')->references('id')->on('villas')->onDelete('cascade')->onUpdate('cascade');

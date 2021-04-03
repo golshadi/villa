@@ -19,9 +19,14 @@ class HomeController extends Controller
         return new PopularVillasCollection($data);
     }
 
+
     public function getBanners()
     {
         $data = Banner::all();
+        return $this->bannersType($data);
+    }
+
+    public function bannersType($data){
         $bannerType1 = [];
         $bannerType2 = [];
         $bannerType3 = [];
@@ -39,15 +44,16 @@ class HomeController extends Controller
                     break;
             }
         }
-
-        return response()->json(['type1'=>$bannerType1,'type2'=>$bannerType2,'type3'=>$bannerType3]);
+        return response()->json(['data'=>['villages'=>$bannerType1,'villas'=>$bannerType2,'bigBanners'=>$bannerType3]]);
     }
+
     
     public function discountedVillas()
     {
         $data = Rule::where('weekly_discount', '>', 0)->orwhere('monthly_discount', '>', 0)->orderBy('id', 'desc')->take('4')->get();
         return new DiscountedVillasCollection($data);
     }
+
 
     public function economicVillas(){
         $data = Villa::orderBy('id', 'desc')->take(4)->get();

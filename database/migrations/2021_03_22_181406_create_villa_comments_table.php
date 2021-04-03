@@ -17,13 +17,13 @@ class CreateVillaCommentsTable extends Migration
             $table->id();
             $table->bigInteger('villa_id')->unsigned();     
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('parent_id')->unsigned();
+            $table->bigInteger('parent_id')->unsigned()->default(0);
             $table->longText('text');
-            $table->float('total_score');
-            $table->float('cleaning');
-            $table->float('ad_compliance');
-            $table->float('hospitality');
-            $table->float('hosting_quality');
+            $table->float('total_score')->nullable();
+            $table->float('cleaning')->nullable();
+            $table->float('ad_compliance')->nullable();
+            $table->float('hospitality')->nullable();
+            $table->float('hosting_quality')->nullable();
             
             $table->timestamps();
 

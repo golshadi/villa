@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('v1')->namespace('API\v1')->group(function () {
@@ -12,9 +11,9 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
     Route::get('/economicVillas','HomeController@economicVillas');
 
 
+    // Villa Api Routes
+    Route::get('/villa/show/{id}','VillaController@show');
+    Route::get('/villa/comments/{id}','VillaController@comments');
+    Route::get('/villa/images/{id}','VillaController@images');
     
-});
- 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
 });

@@ -17,7 +17,7 @@ class CreateVillaImagesTable extends Migration
             $table->id();
             $table->bigInteger('villa_id')->unsigned();     
             $table->string('img_src');
-            $table->string('img_title');
+            $table->string('img_title')->nullable();
             $table->timestamps();
 
             $table->foreign('villa_id')->references('id')->on('villas')->onDelete('cascade')->onUpdate('cascade');
