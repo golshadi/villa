@@ -34,17 +34,17 @@ class HomeController extends Controller
         foreach ($data as $key => $item) {
             switch ($item->type) {
                 case 1:
-                     $bannerType1[$key] = $item;
+                    array_push($bannerType1,$item);
                     break;
                 case 2:
-                     $bannerType2[$key] = $item;
+                    array_push($bannerType2,$item);
                     break;
                 case 3:
-                     $bannerType3[$key] = $item;
+                    array_push($bannerType3,$item);
                     break;
             }
         }
-        return response()->json(['data'=>['villages'=>$bannerType1,'villas'=>$bannerType2,'bigBanners'=>$bannerType3]]);
+        return ['villages'=>$bannerType1,'villas'=>$bannerType2,'bigBanners'=>$bannerType3];
     }
 
     
@@ -56,7 +56,7 @@ class HomeController extends Controller
 
 
     public function economicVillas(){
-        $data = Villa::orderBy('id', 'desc')->take(4)->get();
+        $data = Rule::where('weekly_discount', '>', 0)->orwhere('monthly_discount', '>', 0)->orderBy('id', 'desc')->take('4')->get();
         return new EconomicVillasCollection($data);
     }
 

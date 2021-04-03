@@ -17,6 +17,7 @@ class EconomicVillasCollection extends ResourceCollection
         return [
             'data' => $this->collection->map(function ($item) {
                 return [
+                    'id'=>$item->id,
                     'title' => $item->title,
                     'state' => $item->state,
                     'city' => $item->city,

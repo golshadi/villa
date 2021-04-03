@@ -18,7 +18,7 @@ class DiscountedVillasCollection extends ResourceCollection
             'data' => $this->collection->map(function ($item) {
 
                 return [
-                    'villa' => $item->villa->only('title', 'state', 'city', 'main_img', 'score'),
+                    'villa' => $item->villa->only('id','title', 'state', 'city', 'main_img', 'score'),
                     'normal_cost' => $item->normal_cost,
                     'weekly_discount' => $item->weekly_discount,
                     'monthly_discount' => $item->monthly_discount,
