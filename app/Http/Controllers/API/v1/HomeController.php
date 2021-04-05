@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\v1\DiscountedVillasCollection;
-use App\Http\Resources\v1\EconomicVillasCollection;
-use App\Http\Resources\v1\PopularVillasCollection;
+use App\Http\Resources\v1\Other\DiscountedVillasCollection;
+use App\Http\Resources\v1\Other\EconomicVillasCollection;
+use App\Http\Resources\v1\Other\PopularVillasCollection;
 use App\Models\Banner;
 use App\Models\Rule;
 use App\Models\Villa;

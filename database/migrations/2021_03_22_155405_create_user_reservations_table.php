@@ -23,7 +23,7 @@ class CreateUserReservationsTable extends Migration
             $table->timestamp('entry_date')->default(Carbon::now());
             $table->timestamp('exit_date')->default(Carbon::now());
             $table->bigInteger('cost');
-            $table->integer('pay_status');
+            $table->string('pay_status');
             $table->bigInteger('villa_id')->unsigned();
             $table->timestamps();
 

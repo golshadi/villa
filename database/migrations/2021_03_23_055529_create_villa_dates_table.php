@@ -19,8 +19,8 @@ class CreateVillaDatesTable extends Migration
             $table->bigInteger('villa_id')->unsigned();     
             $table->bigInteger('user_id')->unsigned();
             $table->timestamp('date')->default(Carbon::now());   
-            $table->integer('status');
-            $table->bigInteger('special_price');
+            $table->integer('status')->nullable();
+            $table->bigInteger('special_price')->nullable();
             $table->timestamps();
 
             $table->foreign('villa_id')->references('id')->on('villas')->onDelete('cascade')->onUpdate('cascade');

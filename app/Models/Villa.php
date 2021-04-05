@@ -39,5 +39,13 @@ class Villa extends Model
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function dates(){
+        return $this->hasMany(Date::class);
+    }
+    
+    public function reserves(){
+        return $this->hasMany(ReservedDate::class);
+    }
     
 }

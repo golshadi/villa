@@ -6,20 +6,20 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasApiTokens,HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
+    protected $guarded = [
+        'id',
+        'isAdmin'
     ];
 
     /**
@@ -48,5 +48,16 @@ class User extends Authenticatable
     public function comments(){
         return $this->hasMany(Comment::class);
     }
+
+    public function reservations(){
+        return $this->hasMany(Reservation::class);
+    }
+    public function transactions(){
+        return $this->hasMany(Transaction::class);
+    }
+
+    // public function villasComments(){
+    //     return $this->hasManyThrough(Comment::class, Villa::class,'user_id','villa_id');
+    // }
 
 }

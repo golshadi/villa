@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Resources\v1;
+namespace App\Http\Resources\v1\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class PopularVillasCollection extends ResourceCollection
+class UserVillasCollection extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -18,15 +18,12 @@ class PopularVillasCollection extends ResourceCollection
             'data' => $this->collection->map(function($item) {
                 return [
                     'id'=>$item->id,
-                    'title'=>$item->title,
-                    'state' => $item->state,
-                    'city' => $item->city,
+                    'title' => $item->title,
                     'main_img'=>$item->main_img,
-                    'score'=>$item->score,
-                    'details' => $item->detail ? $item->detail->only('bedroom', 'max_capacity') : null,
-                    'rules' => $item->rule ? $item->rule->only('normal_cost') : null
+                    'status'=>($item->status==0) ? 'در انتظار تایید' : 
+                    (($item->status==1)? 'غیر فعال' : 'تایید شد')
                 ];
             })
-        ];  
+        ];      
     }
 }

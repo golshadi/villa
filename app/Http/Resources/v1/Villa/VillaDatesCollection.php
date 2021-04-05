@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Resources\v1;
+namespace App\Http\Resources\v1\Villa;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
+use Verta;
 
-class VillaImages extends ResourceCollection
+class VillaDatesCollection extends ResourceCollection
 {
     /**
-     * Transform the resource into an array.
+     * Transform the resource collection into an array.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return array
@@ -18,10 +19,11 @@ class VillaImages extends ResourceCollection
             'data' => $this->collection->map(function($item) {
                 return [
                     'id'=>$item->id,
-                    'img_src' => $item->img_src,
-                    'img_title' => $item->img_title,
+                    'date' => Verta::instance($item->date)->format('Y-n-j'),
+                    'status'=>$item->status==0 ? 'خالی' : 'رزرو شده',
+                    'special_price'=>$item->special_price,
                 ];
             })
         ];      
     }
-}
+} 
