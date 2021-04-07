@@ -5,13 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Withdrawal extends Model
 {
     use HasFactory;
-    protected $table='villa_images';
     protected $guarded=['id'];
+    protected $table='user_withdrawal_requests';
 
-    public function villa(){
-        return $this->belongsTo(Villa::class);
+    public function user(){
+        return $this->belongsTo(User::class);
     }
 }

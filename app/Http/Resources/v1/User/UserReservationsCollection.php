@@ -25,7 +25,10 @@ class UserReservationsCollection extends ResourceCollection
                     'entry_date'=>Verta::instance($item->entry_date)->format('Y/n/j'),
                     'exit_date'=>Verta::instance($item->exit_date)->format('Y/n/j'),
                     'cost'=>$item->cost,
-                    'pay_status'=> $item->pay_status,
+                    'pay_status'=> $item->pay_status, 
+                    // 0 => در انتظار پذیرش میزبان ,
+                    // 1 => در انتظار پرداخت ,
+                    // 2 => پرداخت شد
                     'villa_id'=>$item->villa_id
                 ];
             })

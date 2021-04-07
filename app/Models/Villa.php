@@ -47,5 +47,10 @@ class Villa extends Model
     public function reserves(){
         return $this->hasMany(ReservedDate::class);
     }
+
+    public function searches()
+    {
+        return $this->hasMany(Search::class);
+    }
     
 }

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Verta;
 
 class User extends Authenticatable
 {
@@ -56,8 +57,39 @@ class User extends Authenticatable
         return $this->hasMany(Transaction::class);
     }
 
-    // public function villasComments(){
-    //     return $this->hasManyThrough(Comment::class, Villa::class,'user_id','villa_id');
-    // }
+    public function requestedReserves(){
+        return $this->hasMany(ReservedDate::class);
+    }
+    public function withdrawals(){
+        return $this->hasMany(Withdrawal::class);
+    }
+    public function favorites(){
+        return $this->hasMany(Favorite::class);
+    }
+
+    public static function saveDates($dates,$special_price='',$villaId,$userId,$status=''){
+        $dates=explode(',',$dates);
+        $dataArray=[];
+        $filedKey=$special_price!='' ? 'special_price' : 'status';
+        $filedValue=$special_price!='' ? $special_price : $status;
+        $datesArray=[];
+
+        foreach($dates as $key=>$value){
+            $date=explode('/',$value);
+            $datesArray[$key]=$date;
+            $dataArray[$key]=
+            [
+            'villa_id'=>$villaId,
+            'user_id'=>$userId,
+            'date'=>str_replace(',','-',implode(',',Verta::getGregorian($date[0],$date[1],$date[2]))),
+            $filedKey=>$filedValue
+            ];
+        }
+        // Date::insert($arr);
+        Date::updateOrCreate(
+            ['date'=>'2021-03-24'],
+            [$dataArray]
+        );
+    }
 
 }

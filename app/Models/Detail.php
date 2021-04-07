@@ -9,6 +9,7 @@ class Detail extends Model
 {
     use HasFactory;
     protected $table='villa_details';
+    protected $guarded=['id'];
 
     public function villa(){
         return $this->belongsTo(Villa::class);

@@ -5,10 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Image extends Model
+class Search extends Model
 {
     use HasFactory;
-    protected $table='villa_images';
     protected $guarded=['id'];
 
     public function villa(){
