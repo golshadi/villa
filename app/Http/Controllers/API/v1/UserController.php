@@ -5,43 +5,44 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\User\UserReservationsCollection;
 use App\Http\Resources\v1\User\UserTransactionsCollection;
-use App\Http\Resources\v1\User\UserVillaCommentsCollection;
 use App\Http\Resources\v1\User\UserVillaDatesCollection;
 use App\Http\Resources\v1\User\UserVillaReservationsCollection;
 use App\Http\Resources\v1\User\UserVillasCollection;
-use App\Models\Comment;
-use App\Models\Date;
 use App\Models\Reservation;
 use App\Models\ReservedDate;
 use App\Models\User;
 use App\Models\Villa;
 use App\Models\Withdrawal;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Verta;
+use Hekmatinasser\Verta\Verta;
 
 class UserController extends Controller
 {
+
+    public function getUserInfo(){
+        return Auth::user();
+    }
+
     public function updateInfo(Request $request){
 
-        $user=Auth::loginUsingId(4);
+        $user=Auth::user();
 
         $validator = $this->validate($request, [
             'fullname' => 'required',
-            'phone_number'=>'required',
+            'phone_number'=>'required|max:11',
             'email'=>'email',
             'notional_code'=>'max:10',
-            'job'=>'max:200',
-            'education'=>'max:200',
-            'foreign_language'=>'max:200',
-            'card_number'=>'max:200',
-            'shaba_number'=>'max:200'
+            'job'=>'max:100',
+            'education'=>'max:100',
+            'foreign_language'=>'max:100',
+            'card_number'=>'max:16',
+            'shaba_number'=>'max:24'
         ]);
 
         if($request->hasFile('avatar')){
             $this->validate($request, [
-                'avatar' => 'max:2048,required|mimes:jpg,png,bmp,jpeg|image'
+                'avatar' => 'max:2048|mimes:jpg,png,bmp,jpeg|image'
             ]);
             $img_name = 'User_' . time() . rand(0,10000) . '.' . $request->file('avatar')->getClientOriginalExtension();
             request()->avatar->move(public_path('images/user'), $img_name);
@@ -53,44 +54,21 @@ class UserController extends Controller
     }
 
     public function reserves(){
-        $user=Auth::loginUsingId(4);
+        $user=Auth::user();
         $reserves=$user->reservations;
         return new UserReservationsCollection($reserves);
     }
 
     public function transactions(){
-        $user=Auth::loginUsingId(4);
+        $user=Auth::user();
         $transactions=$user->transactions;
         return new UserTransactionsCollection($transactions);
     }
 
     public function villas(){
-        $user=Auth::loginUsingId(4);
+        $user=Auth::user();
         $villas=$user->villas;
         return new UserVillasCollection($villas);
-    }
-
-    public function comments($id){
-        $user=Auth::loginUsingId(4);
-        $villa=Villa::where([['id',$id],['user_id',$user->id]])->first();
-        $comments=$villa->comments;
-        return new UserVillaCommentsCollection($comments);
-    }
-
-    public function replayComment(Request $request,$villaId,$parentId){
-
-        $this->validate($request, [
-            'text' => 'required'
-        ]);
-        
-        Comment::create([
-            'villa_id'=>$villaId,
-            'user_id'=>Auth::loginUsingId(4)->id,
-            'parent_id'=>$parentId,
-            'text'=>$request->text,
-        ]);
-
-        return response()->json(['data'=>'The comment was answered']);
     }
 
     public function villaDates($id){
@@ -101,7 +79,7 @@ class UserController extends Controller
     }
 
     public function changeDatesCost(Request $request,$id){
-        $userId=Auth::loginUsingId(4)->id;
+        $userId=Auth::user()->id;
         $villa=Villa::where([['id',$id],['user_id',$userId]])->first();
         // User::saveDates($request->dates,$request->special_price,$villa->id,$userId);
         $dates=$request->dates;
@@ -137,7 +115,7 @@ class UserController extends Controller
     }
     
     public function changeDatesStatus(Request $request,$id){
-        $userId=Auth::loginUsingId(4)->id;
+        $userId=Auth::user()->id;
         $villa=Villa::where([['id',$id],['user_id',$userId]])->first();
         User::saveDates($request->dates,'',$villa->id,$userId,$request->status);
         return response()->json(['data'=>'Status saved.']);
@@ -145,7 +123,7 @@ class UserController extends Controller
 
 
     public function reservationsRequested($id){
-        $user=Auth::loginUsingId(4);
+        $user=Auth::user();
         $villas=$user->villas;
         $villaIds=[];
         foreach($villas as $key=>$value){
@@ -168,17 +146,12 @@ class UserController extends Controller
     }
 
     public function withdrawal(Request $request){
-        $user=Auth::loginUsingId(4);
+        $user=Auth::user();
         Withdrawal::create([
             'user_id'=>$user->id,
             'requested_amount'=>$request->requested_amount
         ]);
         return response()->json(['data'=>'Withdrawal request created']);
     }
-
-    public function updateVilla(Request $request){
-        
-    }
-
 
 }

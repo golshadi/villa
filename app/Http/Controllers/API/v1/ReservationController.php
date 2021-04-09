@@ -17,18 +17,27 @@ class ReservationController extends Controller
         date_default_timezone_set('Asia/Tehran');
     }
     public function reserveRequest(Request $request){
-        $user=Auth::loginUsingId(6);
-        Reservation::create([
-            'user_id'=>$user->id,
-            'villa_title'=>$request->villa_title,
-            'state'=>$request->state,
-            'city'=>$request->city,
-            'entry_date'=>convertToGregorian($request->entry_date),
-            'exit_date'=>convertToGregorian($request->exit_date),
-            'cost'=>$request->cost,
-            'pay_status'=>0,
-            'villa_id'=>$request->villa_id
+
+        $validatedData=$this->validate($request,[
+            'villa_title'=>'required',
+            'state'=>'required',
+            'city'=>'required',
+            'entry_date'=>'required',
+            'exit_date'=>'required',
+            'cost'=>'required|numeric',
+            'villa_id'=>'required',
+            'passengers_number'=>'required',
+            'extra_people'=>'required',
+            'length_stay'=>'required',
         ]);
+
+        $user=Auth::user();
+        $user_reserve=Reservation::create($validatedData);
+        $user_reserve->user_id=$user->id;
+        $user_reserve->entry_date=convertToGregorian($request->entry_date);
+        $user_reserve->exit_date=convertToGregorian($request->exit_date);
+        $user_reserve->pay_status=0;
+        $user_reserve->save();
 
         ReservedDate::create([
             'villa_id'=>$request->villa_id,

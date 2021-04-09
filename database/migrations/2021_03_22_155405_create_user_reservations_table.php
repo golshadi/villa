@@ -25,6 +25,9 @@ class CreateUserReservationsTable extends Migration
             $table->bigInteger('cost');
             $table->string('pay_status');
             $table->bigInteger('villa_id')->unsigned();
+            $table->integer('passengers_number');
+            $table->integer('extra_people')->default(0);
+            $table->integer('length_stay');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

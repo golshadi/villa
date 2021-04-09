@@ -19,7 +19,7 @@ class CreateSearchesTable extends Migration
             $table->string('city');
             $table->string('village')->nullable();
             $table->integer('passengers_count');
-            $table->string('bedroom');
+            $table->integer('bedroom');
             $table->bigInteger('normal_cost');
             $table->string('category');            
             $table->boolean('discount')->default(false); 

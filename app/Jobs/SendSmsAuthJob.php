@@ -37,13 +37,13 @@ class SendSmsAuthJob implements ShouldQueue
      */
     public function handle()
     {
-        // $api = new GhasedakApi(env('GHASEDAKAPI_KEY'));
-        // $api->SendSimple(
-        //     $this->phone_number,  // receptor   
-        //     "باسلام کد احراز هویت شما در سایت : '.$this->code.' میباشد.Trapp.ir", // message   
-        //     "3000xxxxx"    // choose a line number from your account  
-        // );
-        Log::info('sms sent');
+        $api = new GhasedakApi(env('GHASEDAKAPI_KEY'));
+        $api->SendSimple(
+            $this->phone_number,  // receptor   
+            "باسلام کد احراز هویت شما در سایت : '.$this->code.' میباشد.Trapp.ir", // message   
+            "3000xxxxx"    // choose a line number from your account  
+        );
+        // Log::info('sms sent');
     }
 
     public function failed(){

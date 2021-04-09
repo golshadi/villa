@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Verta;
+use Hekmatinasser\Verta\Verta;
 
 class User extends Authenticatable
 {
@@ -53,6 +53,9 @@ class User extends Authenticatable
     public function reservations(){
         return $this->hasMany(Reservation::class);
     }
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
+    }
     public function transactions(){
         return $this->hasMany(Transaction::class);
     }
@@ -65,6 +68,7 @@ class User extends Authenticatable
     }
     public function favorites(){
         return $this->hasMany(Favorite::class);
+        //,'favorite_user','user_id','villa_id'
     }
 
     public static function saveDates($dates,$special_price='',$villaId,$userId,$status=''){

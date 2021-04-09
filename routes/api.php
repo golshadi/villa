@@ -14,51 +14,53 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
     // Villa Api Routes
     Route::prefix('villa')->group(function () {
         Route::get('show/{id}', 'VillaController@show');
-        Route::get('comments/{id}', 'VillaController@comments');
+        Route::get('comments/{id}', 'CommentController@getVillaComments');
         Route::get('images/{id}', 'VillaController@images');
         Route::get('dates/{id}', 'VillaController@dates');
         Route::get('reservedDates/{id}', 'VillaController@reservedDates');
         Route::get('similarVillas/{id}', 'VillaController@similarVillas');
         Route::post('store','VillaController@store');
         Route::post('img/{id}','VillaController@img');
-        Route::get('test', function () {
-            return view('welcome');
-        });
     });
 
     // User Api Routes
-    Route::prefix('user')->group(function () {
+    Route::middleware('auth:api')->prefix('user')->group(function () {
+        Route::get('getUserInfo','UserController@getUserInfo');
         Route::post('updateInfo', 'UserController@updateInfo');
         Route::get('reserves', 'UserController@reserves');
         Route::get('transactions', 'UserController@transactions');
         Route::get('villas', 'UserController@villas');
-        Route::get('comments/{id}', 'UserController@comments');
-        Route::post('replayComment/{villaId}/{parentId}', 'UserController@replayComment');
+        Route::get('comments/{id}', 'CommentController@getUserComments');
+        Route::post('replayComment/{villaId}/{parentId}', 'CommentController@replayComment');
+        Route::post('addComment/{villaId}', 'CommentController@addComment');
         Route::get('villaDates/{id}', 'UserController@villaDates');
         Route::post('changeDatesCost/{id}', 'UserController@changeDatesCost');
         Route::post('changeDatesStatus/{id}', 'UserController@changeDatesStatus');
         Route::get('reservationsRequested/{id}', 'UserController@reservationsRequested');
         Route::post('changeReserveStatus/{id}', 'UserController@changeReserveStatus');
         Route::post('withdrawal', 'UserController@withdrawal');
-        Route::post('updateVilla', 'UserController@updateVilla');
-        Route::post('login','AuthController@login');
-        Route::post('register','AuthController@register');
-        Route::post('sendSmsAuth','AuthController@sendSmsAuth');
-        Route::post('sendSmsAuth','AuthController@sendSmsAuth');
-        Route::post('verifySmsCode','AuthController@verifySmsCode');
-        Route::post('addToFavorite','AuthController@addToFavorite');
-        Route::post('removeFromFavorite','AuthController@removeFromFavorite');
-        
+        Route::get('favorites', 'FavoriteController@getFavorites');
+        Route::post('addToFavorite','FavoriteController@addToFavorite');
+        Route::post('removeFromFavorite','FavoriteController@removeFromFavorite');
     });
+
+    Route::post('login','AuthController@login');
+    Route::post('register','AuthController@register');
+    Route::post('sendRegisterSms','AuthController@sendRegisterSms');
+    Route::post('sendNormalSms','AuthController@sendNormalSms');
+    Route::post('verifySmsCode','AuthController@verifySmsCode');
 
 
     // Search Api Routes
     Route::get('search','SearchController@search');
     Route::get('doSearch','SearchController@doSearch');
-    Route::get('testSearch','SearchController@testSearch');
 
 
     // Reservation Api Routes
     Route::post('reserveRequest','ReservationController@reserveRequest');
+
+    // Factor Api Routes
+    Route::get('factor/{id}', 'FactorController@getFactor'); // id ==> Reserve id
+
     
 });

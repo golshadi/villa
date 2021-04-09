@@ -8,10 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     use HasFactory;
-    protected $guqrded=['id'];
-    protected $table='';
+    protected $fillable=['villa_id','user_id'];
+    protected $table='favorite_user';
+    public $timestamps = false;
 
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function users(){
+        return $this->belongsToMany(User::class);
+        //,'favorite_user','villa_id','user_id'
     }
 }

@@ -14,4 +14,9 @@ class Detail extends Model
     public function villa(){
         return $this->belongsTo(Villa::class);
     }
+      
+    public function search(){
+        return $this->belongsTo(Search::class,'villa_id');
+    }    
+  
 }

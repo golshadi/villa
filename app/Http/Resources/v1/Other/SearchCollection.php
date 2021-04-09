@@ -19,8 +19,13 @@ class SearchCollection extends ResourceCollection
                 return [
                     'id'=>$item->villa->id,
                     'title'=>$item->villa->title,
-                    'type' => $item->villa->type,
-                    
+                    'state' => $item['villa']->state,
+                    'city' => $item['villa']->city,
+                    'village' => $item['villa']->village,
+                    'score' => $item->score,
+                    'main_img'=>$item['villa']->main_img,
+                    'details' => $item['detail'],
+                    'rules' => $item['rile']
                 ];
             })
         ]; 

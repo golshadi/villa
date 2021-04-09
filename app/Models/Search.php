@@ -13,4 +13,16 @@ class Search extends Model
     public function villa(){
         return $this->belongsTo(Villa::class);
     }
+
+    
+    public function detail()
+    {
+        return $this->hasOne(Detail::class,'villa_id','villa_id');
+    }
+
+    public function rule()
+    {
+        return $this->hasOne(Rule::class,'villa_id','villa_id');
+    }
+  
 }

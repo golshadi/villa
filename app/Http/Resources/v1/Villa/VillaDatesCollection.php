@@ -19,7 +19,7 @@ class VillaDatesCollection extends ResourceCollection
             'data' => $this->collection->map(function($item) {
                 return [
                     'id'=>$item->id,
-                    'date' => Verta::instance($item->date)->format('Y-n-j'),
+                    'date' => Verta::instance($item->date)->format('Y/n/j'),
                     'status'=>$item->status==0 ? 'خالی' : 'رزرو شده',
                     'special_price'=>$item->special_price,
                 ];

@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function popularVillas()
     {
-        $data = Villa::orderBy('visit_count', 'desc')->take(4)->get();
+        $data = Villa::orderBy('visit_count', 'desc')->with(['detail','rule'])->take(4)->get();
         return new PopularVillasCollection($data);
     }
 
@@ -50,13 +50,19 @@ class HomeController extends Controller
     
     public function discountedVillas()
     {
-        $data = Rule::where('weekly_discount', '>', 0)->orwhere('monthly_discount', '>', 0)->orderBy('id', 'desc')->take('4')->get();
+        $data = Rule::where('weekly_discount', '>', 0)
+        ->orwhere('monthly_discount', '>', 0)->orderBy('id', 'desc')
+        ->with('villa')
+        ->take('4')->get();
         return new DiscountedVillasCollection($data);
     }
 
 
     public function economicVillas(){
-        $data = Rule::where('weekly_discount', '>', 0)->orwhere('monthly_discount', '>', 0)->orderBy('id', 'desc')->take('4')->get();
+        $data = Rule::where('weekly_discount', '>', 0)
+        ->orwhere('monthly_discount', '>', 0)->orderBy('normal_cost', 'asc')
+        ->with('villa')
+        ->take('4')->get();
         return new EconomicVillasCollection($data);
     }
 
