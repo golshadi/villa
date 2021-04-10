@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -68,32 +69,41 @@ class User extends Authenticatable
     }
     public function favorites(){
         return $this->hasMany(Favorite::class);
-        //,'favorite_user','user_id','villa_id'
     }
 
-    public static function saveDates($dates,$special_price='',$villaId,$userId,$status=''){
-        $dates=explode(',',$dates);
-        $dataArray=[];
+    public static function saveDates($recievedDates,$special_price='',$villaId,$status=''){
+
         $filedKey=$special_price!='' ? 'special_price' : 'status';
         $filedValue=$special_price!='' ? $special_price : $status;
+
+        $userId=Auth::user()->id;
+
+        $villa=Villa::where([['id',$villaId],['user_id',$userId]])->first();
+        $dates=$recievedDates;
+        $dates=explode(',',$dates);
+        $dataArray=[];
         $datesArray=[];
 
+        if($villa){
         foreach($dates as $key=>$value){
             $date=explode('/',$value);
             $datesArray[$key]=$date;
+            $currentUserDate=str_replace(',','-',implode(',',Verta::getGregorian($date[0],$date[1],$date[2])));
             $dataArray[$key]=
             [
-            'villa_id'=>$villaId,
+            'villa_id'=>$villa->id,
             'user_id'=>$userId,
-            'date'=>str_replace(',','-',implode(',',Verta::getGregorian($date[0],$date[1],$date[2]))),
+            'date'=>$currentUserDate,
             $filedKey=>$filedValue
             ];
+            Date::updateOrCreate([
+                'villa_id'=>$villa->id,
+                'user_id'=>$userId,
+                'date'=>$currentUserDate
+            ],$dataArray[$key]);
         }
-        // Date::insert($arr);
-        Date::updateOrCreate(
-            ['date'=>'2021-03-24'],
-            [$dataArray]
-        );
+        return response()->json(['data'=>'Done']);       
     }
-
+        return response()->json(['data'=>'Something went wrong!']);
+    }
 }

@@ -23,6 +23,7 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::post('img/{id}','VillaController@img');
     });
 
+
     // User Api Routes
     Route::middleware('auth:api')->prefix('user')->group(function () {
         Route::get('getUserInfo','UserController@getUserInfo');
@@ -30,12 +31,14 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::get('reserves', 'UserController@reserves');
         Route::get('transactions', 'UserController@transactions');
         Route::get('villas', 'UserController@villas');
-        Route::get('comments/{id}', 'CommentController@getUserComments');
+        Route::get('editVilla/{id}', 'UserController@editVilla');
+        Route::get('getUserVillaComments/{id}', 'CommentController@getUserVillaComments');
         Route::post('replayComment/{villaId}/{parentId}', 'CommentController@replayComment');
         Route::post('addComment/{villaId}', 'CommentController@addComment');
         Route::get('villaDates/{id}', 'UserController@villaDates');
         Route::post('changeDatesCost/{id}', 'UserController@changeDatesCost');
         Route::post('changeDatesStatus/{id}', 'UserController@changeDatesStatus');
+        Route::get('allReservationsRequested', 'UserController@allReservationsRequested');
         Route::get('reservationsRequested/{id}', 'UserController@reservationsRequested');
         Route::post('changeReserveStatus/{id}', 'UserController@changeReserveStatus');
         Route::post('withdrawal', 'UserController@withdrawal');

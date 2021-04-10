@@ -19,8 +19,8 @@ class UserVillaReservationsCollection extends ResourceCollection
             'data' => $this->collection->map(function($item) {
                 return [
                     'id'=>$item->id,
-                    'title' => $item->user->fullname,
-                    'guest_name'=>$item->id,
+                    'title' => $item->villa->title,
+                    'guest_name'=> $item->user->fullname,
                     'passengers_number'=>$item->passengers_number,
                     'start_date'=>Verta::instance($item->start_date)->format('Y/n/j'),
                     'end_date'=>Verta::instance($item->end_date)->format('Y/n/j'),

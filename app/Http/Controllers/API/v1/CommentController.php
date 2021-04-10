@@ -22,11 +22,14 @@ class CommentController extends Controller
         return new VillaComments($comments, $scores);
     }
 
-    public function getUserComments($id){
+    public function getUserVillaComments($id){
         $user=Auth::user();
         $villa=Villa::where([['id',$id],['user_id',$user->id]])->first();
-        $comments=$villa->comments;
-        return new UserVillaCommentsCollection($comments);
+        if($villa){
+            $comments=$villa->comments;
+            return new UserVillaCommentsCollection($comments);
+        }
+        return response()->json(['status'=>0,'data'=>'Something went wrong!']);
     }
 
     public function replayComment(Request $request,$villaId,$parentId){
