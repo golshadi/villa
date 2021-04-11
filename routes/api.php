@@ -20,7 +20,6 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::get('reservedDates/{id}', 'VillaController@reservedDates');
         Route::get('similarVillas/{id}', 'VillaController@similarVillas');
         Route::post('store','VillaController@store');
-        Route::post('img/{id}','VillaController@img');
     });
 
 

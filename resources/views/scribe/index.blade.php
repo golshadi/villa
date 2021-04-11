@@ -1,22 +1,78 @@
-# Endpoints
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Laravel Documentation</title>
 
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
 
-## Authorize a client to access the user&#039;s account.
+        <link rel="stylesheet" href="{{ asset("vendor/scribe/css/style.css") }}" media="screen" />
+        <link rel="stylesheet" href="{{ asset("vendor/scribe/css/print.css") }}" media="print" />
+        <script src="{{ asset("vendor/scribe/js/all.js") }}"></script>
 
+        <link rel="stylesheet" href="{{ asset("vendor/scribe/css/highlight-darcula.css") }}" media="" />
+        <script src="{{ asset("vendor/scribe/js/highlight.pack.js") }}"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
+</head>
 
+<body class="" data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        NAV
+            <img src="{{ asset("vendor/scribe/images/navbar.png") }}" alt="-image" class=""/>
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="bash">bash</a>
+                            <a href="#" data-language-name="javascript">javascript</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
 
-> Example request:
+    <ul id="toc">
+    </ul>
 
-```bash
-curl -X GET \
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="{{ route("scribe.postman") }}">View Postman collection</a></li>
+                            <li><a href="{{ route("scribe.openapi") }}">View OpenAPI (Swagger) spec</a></li>
+                            <li><a href='http://github.com/knuckleswtf/scribe'>Documentation powered by Scribe ✍</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: April 10 2021</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>This documentation aims to provide all the information you need to work with our API.</p>
+<aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
+You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
+<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+<script>
+    var baseUrl = "http://localhost";
+</script>
+<script src="{{ asset("vendor/scribe/js/tryitout-2.5.3.js") }}"></script>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost</code></pre><h1>Authenticating requests</h1>
+<p>This API is not authenticated.</p><h1>Endpoints</h1>
+<h2>Authorize a client to access the user&#039;s account.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/oauth/authorize" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/authorize"
 );
 
@@ -25,21 +81,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GEToauth-authorize" hidden>
     <blockquote>Received response<span id="execution-response-status-GEToauth-authorize"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GEToauth-authorize"></code></pre>
@@ -60,24 +111,15 @@ fetch(url, {
  <b><code>oauth/authorize</code></b>
 </p>
 </form>
-
-
-## Approve the authorization request.
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>Approve the authorization request.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/oauth/authorize" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/authorize"
 );
 
@@ -86,14 +128,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSToauth-authorize" hidden>
     <blockquote>Received response<span id="execution-response-status-POSToauth-authorize"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSToauth-authorize"></code></pre>
@@ -114,24 +152,15 @@ fetch(url, {
  <b><code>oauth/authorize</code></b>
 </p>
 </form>
-
-
-## Deny the authorization request.
-
-
-
-
-> Example request:
-
-```bash
-curl -X DELETE \
+<h2>Deny the authorization request.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
     "http://localhost/oauth/authorize" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/authorize"
 );
 
@@ -140,14 +169,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "DELETE",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-DELETEoauth-authorize" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEoauth-authorize"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEoauth-authorize"></code></pre>
@@ -168,24 +193,15 @@ fetch(url, {
  <b><code>oauth/authorize</code></b>
 </p>
 </form>
-
-
-## Authorize a client to access the user&#039;s account.
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>Authorize a client to access the user&#039;s account.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/oauth/token" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/token"
 );
 
@@ -194,14 +210,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSToauth-token" hidden>
     <blockquote>Received response<span id="execution-response-status-POSToauth-token"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSToauth-token"></code></pre>
@@ -222,24 +234,15 @@ fetch(url, {
  <b><code>oauth/token</code></b>
 </p>
 </form>
-
-
-## Get all of the authorized tokens for the authenticated user.
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>Get all of the authorized tokens for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/oauth/tokens" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/tokens"
 );
 
@@ -248,21 +251,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GEToauth-tokens" hidden>
     <blockquote>Received response<span id="execution-response-status-GEToauth-tokens"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GEToauth-tokens"></code></pre>
@@ -283,24 +281,15 @@ fetch(url, {
  <b><code>oauth/tokens</code></b>
 </p>
 </form>
-
-
-## Delete the given token.
-
-
-
-
-> Example request:
-
-```bash
-curl -X DELETE \
+<h2>Delete the given token.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
     "http://localhost/oauth/tokens/placeat" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/tokens/placeat"
 );
 
@@ -309,14 +298,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "DELETE",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-DELETEoauth-tokens--token_id-" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEoauth-tokens--token_id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEoauth-tokens--token_id-"></code></pre>
@@ -343,24 +328,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## Get a fresh transient token cookie for the authenticated user.
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>Get a fresh transient token cookie for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/oauth/token/refresh" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/token/refresh"
 );
 
@@ -369,14 +345,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSToauth-token-refresh" hidden>
     <blockquote>Received response<span id="execution-response-status-POSToauth-token-refresh"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSToauth-token-refresh"></code></pre>
@@ -397,24 +369,15 @@ fetch(url, {
  <b><code>oauth/token/refresh</code></b>
 </p>
 </form>
-
-
-## Get all of the clients for the authenticated user.
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>Get all of the clients for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/oauth/clients" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/clients"
 );
 
@@ -423,21 +386,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GEToauth-clients" hidden>
     <blockquote>Received response<span id="execution-response-status-GEToauth-clients"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GEToauth-clients"></code></pre>
@@ -458,24 +416,15 @@ fetch(url, {
  <b><code>oauth/clients</code></b>
 </p>
 </form>
-
-
-## Store a new client.
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>Store a new client.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/oauth/clients" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/clients"
 );
 
@@ -484,14 +433,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSToauth-clients" hidden>
     <blockquote>Received response<span id="execution-response-status-POSToauth-clients"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSToauth-clients"></code></pre>
@@ -512,24 +457,15 @@ fetch(url, {
  <b><code>oauth/clients</code></b>
 </p>
 </form>
-
-
-## Update the given client.
-
-
-
-
-> Example request:
-
-```bash
-curl -X PUT \
+<h2>Update the given client.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X PUT \
     "http://localhost/oauth/clients/sapiente" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/clients/sapiente"
 );
 
@@ -538,14 +474,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "PUT",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-PUToauth-clients--client_id-" hidden>
     <blockquote>Received response<span id="execution-response-status-PUToauth-clients--client_id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-PUToauth-clients--client_id-"></code></pre>
@@ -572,24 +504,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## Delete the given client.
-
-
-
-
-> Example request:
-
-```bash
-curl -X DELETE \
+<h2>Delete the given client.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
     "http://localhost/oauth/clients/ipsum" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/clients/ipsum"
 );
 
@@ -598,14 +521,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "DELETE",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-DELETEoauth-clients--client_id-" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEoauth-clients--client_id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEoauth-clients--client_id-"></code></pre>
@@ -632,24 +551,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## Get all of the available scopes for the application.
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>Get all of the available scopes for the application.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/oauth/scopes" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/scopes"
 );
 
@@ -658,21 +568,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GEToauth-scopes" hidden>
     <blockquote>Received response<span id="execution-response-status-GEToauth-scopes"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GEToauth-scopes"></code></pre>
@@ -693,24 +598,15 @@ fetch(url, {
  <b><code>oauth/scopes</code></b>
 </p>
 </form>
-
-
-## Get all of the personal access tokens for the authenticated user.
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>Get all of the personal access tokens for the authenticated user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/oauth/personal-access-tokens" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/personal-access-tokens"
 );
 
@@ -719,21 +615,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GEToauth-personal-access-tokens" hidden>
     <blockquote>Received response<span id="execution-response-status-GEToauth-personal-access-tokens"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GEToauth-personal-access-tokens"></code></pre>
@@ -754,24 +645,15 @@ fetch(url, {
  <b><code>oauth/personal-access-tokens</code></b>
 </p>
 </form>
-
-
-## Create a new personal access token for the user.
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>Create a new personal access token for the user.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/oauth/personal-access-tokens" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/personal-access-tokens"
 );
 
@@ -780,14 +662,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSToauth-personal-access-tokens" hidden>
     <blockquote>Received response<span id="execution-response-status-POSToauth-personal-access-tokens"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSToauth-personal-access-tokens"></code></pre>
@@ -808,24 +686,15 @@ fetch(url, {
  <b><code>oauth/personal-access-tokens</code></b>
 </p>
 </form>
-
-
-## Delete the given token.
-
-
-
-
-> Example request:
-
-```bash
-curl -X DELETE \
+<h2>Delete the given token.</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X DELETE \
     "http://localhost/oauth/personal-access-tokens/repellendus" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/oauth/personal-access-tokens/repellendus"
 );
 
@@ -834,14 +703,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "DELETE",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-DELETEoauth-personal-access-tokens--token_id-" hidden>
     <blockquote>Received response<span id="execution-response-status-DELETEoauth-personal-access-tokens--token_id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-DELETEoauth-personal-access-tokens--token_id-"></code></pre>
@@ -868,24 +733,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/popularVillas
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/popularVillas</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/popularVillas" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/popularVillas"
 );
 
@@ -894,18 +750,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "data": [
         {
             "id": 9,
@@ -958,8 +810,7 @@ fetch(url, {
             }
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-popularVillas" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-popularVillas"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-popularVillas"></code></pre>
@@ -980,24 +831,15 @@ fetch(url, {
  <b><code>api/v1/popularVillas</code></b>
 </p>
 </form>
-
-
-## api/v1/getBanners
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/getBanners</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/getBanners" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/getBanners"
 );
 
@@ -1006,18 +848,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "villages": [
         {
             "id": 1,
@@ -1114,8 +952,7 @@ fetch(url, {
             "updated_at": null
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-getBanners" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-getBanners"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-getBanners"></code></pre>
@@ -1136,24 +973,15 @@ fetch(url, {
  <b><code>api/v1/getBanners</code></b>
 </p>
 </form>
-
-
-## api/v1/discountedVillas
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/discountedVillas</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/discountedVillas" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/discountedVillas"
 );
 
@@ -1162,18 +990,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "data": [
         {
             "villa": {
@@ -1241,8 +1065,7 @@ fetch(url, {
             }
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-discountedVillas" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-discountedVillas"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-discountedVillas"></code></pre>
@@ -1263,24 +1086,15 @@ fetch(url, {
  <b><code>api/v1/discountedVillas</code></b>
 </p>
 </form>
-
-
-## api/v1/economicVillas
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/economicVillas</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/economicVillas" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/economicVillas"
 );
 
@@ -1289,18 +1103,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "data": [
         {
             "id": 4,
@@ -1352,8 +1162,7 @@ fetch(url, {
             "normal_cost": 800000
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-economicVillas" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-economicVillas"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-economicVillas"></code></pre>
@@ -1374,24 +1183,15 @@ fetch(url, {
  <b><code>api/v1/economicVillas</code></b>
 </p>
 </form>
-
-
-## api/v1/villa/show/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/villa/show/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/villa/show/aut" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/show/aut"
 );
 
@@ -1400,18 +1200,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (404):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "No query results for model [App\\Models\\Villa] aut",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
@@ -1422,301 +1218,301 @@ fetch(url, {
             "line": 330,
             "function": "prepareException",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php",
             "line": 54,
             "function": "render",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
             "line": 51,
             "function": "render",
             "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 130,
             "function": "handleException",
             "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
             "line": 50,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 127,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 103,
             "function": "handleRequest",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 55,
             "function": "handleRequestUsingNamedLimiter",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 695,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 670,
             "function": "runRouteWithinStack",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 636,
             "function": "runRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 625,
             "function": "dispatchToRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 166,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Foundation\\Http\\{closure}",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
             "line": 27,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
             "line": 86,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fruitcake\\Cors\\HandleCors",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 141,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 110,
             "function": "sendRequestThroughRouter",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 324,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 305,
             "function": "callLaravelOrLumenRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 76,
             "function": "makeApiCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 51,
             "function": "makeResponseCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 41,
             "function": "makeResponseCallIfEnabledAndNoSuccessResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 236,
             "function": "__invoke",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 172,
             "function": "iterateThroughStrategies",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 127,
             "function": "fetchResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 119,
             "function": "processRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 73,
             "function": "processRoutes",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
             "line": 36,
             "function": "handle",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
@@ -1751,67 +1547,66 @@ fetch(url, {
             "line": 136,
             "function": "call",
             "class": "Illuminate\\Container\\Container",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Command\\Command.php",
             "line": 256,
             "function": "execute",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
             "line": 121,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 971,
             "function": "run",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 290,
             "function": "doRunCommand",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 166,
             "function": "doRun",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
             "line": 92,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
             "line": 129,
             "function": "run",
             "class": "Illuminate\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\artisan",
             "line": 37,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-villa-show--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-villa-show--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-villa-show--id-"></code></pre>
@@ -1838,24 +1633,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/villa/comments/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/villa/comments/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/villa/comments/quod" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/comments/quod"
 );
 
@@ -1864,18 +1650,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (404):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "No query results for model [App\\Models\\Villa] quod",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
@@ -1886,301 +1668,301 @@ fetch(url, {
             "line": 330,
             "function": "prepareException",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php",
             "line": 54,
             "function": "render",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
             "line": 51,
             "function": "render",
             "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 130,
             "function": "handleException",
             "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
             "line": 50,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 127,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 103,
             "function": "handleRequest",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 55,
             "function": "handleRequestUsingNamedLimiter",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 695,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 670,
             "function": "runRouteWithinStack",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 636,
             "function": "runRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 625,
             "function": "dispatchToRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 166,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Foundation\\Http\\{closure}",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
             "line": 27,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
             "line": 86,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fruitcake\\Cors\\HandleCors",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 141,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 110,
             "function": "sendRequestThroughRouter",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 324,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 305,
             "function": "callLaravelOrLumenRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 76,
             "function": "makeApiCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 51,
             "function": "makeResponseCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 41,
             "function": "makeResponseCallIfEnabledAndNoSuccessResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 236,
             "function": "__invoke",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 172,
             "function": "iterateThroughStrategies",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 127,
             "function": "fetchResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 119,
             "function": "processRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 73,
             "function": "processRoutes",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
             "line": 36,
             "function": "handle",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
@@ -2215,67 +1997,66 @@ fetch(url, {
             "line": 136,
             "function": "call",
             "class": "Illuminate\\Container\\Container",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Command\\Command.php",
             "line": 256,
             "function": "execute",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
             "line": 121,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 971,
             "function": "run",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 290,
             "function": "doRunCommand",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 166,
             "function": "doRun",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
             "line": 92,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
             "line": 129,
             "function": "run",
             "class": "Illuminate\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\artisan",
             "line": 37,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-villa-comments--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-villa-comments--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-villa-comments--id-"></code></pre>
@@ -2302,24 +2083,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/villa/images/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/villa/images/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/villa/images/magni" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/images/magni"
 );
 
@@ -2328,18 +2100,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (404):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "No query results for model [App\\Models\\Villa] magni",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
@@ -2350,301 +2118,301 @@ fetch(url, {
             "line": 330,
             "function": "prepareException",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php",
             "line": 54,
             "function": "render",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
             "line": 51,
             "function": "render",
             "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 130,
             "function": "handleException",
             "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
             "line": 50,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 127,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 103,
             "function": "handleRequest",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 55,
             "function": "handleRequestUsingNamedLimiter",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 695,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 670,
             "function": "runRouteWithinStack",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 636,
             "function": "runRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 625,
             "function": "dispatchToRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 166,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Foundation\\Http\\{closure}",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
             "line": 27,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
             "line": 86,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fruitcake\\Cors\\HandleCors",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 141,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 110,
             "function": "sendRequestThroughRouter",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 324,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 305,
             "function": "callLaravelOrLumenRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 76,
             "function": "makeApiCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 51,
             "function": "makeResponseCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 41,
             "function": "makeResponseCallIfEnabledAndNoSuccessResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 236,
             "function": "__invoke",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 172,
             "function": "iterateThroughStrategies",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 127,
             "function": "fetchResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 119,
             "function": "processRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 73,
             "function": "processRoutes",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
             "line": 36,
             "function": "handle",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
@@ -2679,67 +2447,66 @@ fetch(url, {
             "line": 136,
             "function": "call",
             "class": "Illuminate\\Container\\Container",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Command\\Command.php",
             "line": 256,
             "function": "execute",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
             "line": 121,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 971,
             "function": "run",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 290,
             "function": "doRunCommand",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 166,
             "function": "doRun",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
             "line": 92,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
             "line": 129,
             "function": "run",
             "class": "Illuminate\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\artisan",
             "line": 37,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-villa-images--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-villa-images--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-villa-images--id-"></code></pre>
@@ -2766,24 +2533,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/villa/dates/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/villa/dates/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/villa/dates/ipsam" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/dates/ipsam"
 );
 
@@ -2792,18 +2550,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (404):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "No query results for model [App\\Models\\Villa] ipsam",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
@@ -2814,301 +2568,301 @@ fetch(url, {
             "line": 330,
             "function": "prepareException",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php",
             "line": 54,
             "function": "render",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
             "line": 51,
             "function": "render",
             "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 130,
             "function": "handleException",
             "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
             "line": 50,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 127,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 103,
             "function": "handleRequest",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 55,
             "function": "handleRequestUsingNamedLimiter",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 695,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 670,
             "function": "runRouteWithinStack",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 636,
             "function": "runRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 625,
             "function": "dispatchToRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 166,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Foundation\\Http\\{closure}",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
             "line": 27,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
             "line": 86,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fruitcake\\Cors\\HandleCors",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 141,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 110,
             "function": "sendRequestThroughRouter",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 324,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 305,
             "function": "callLaravelOrLumenRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 76,
             "function": "makeApiCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 51,
             "function": "makeResponseCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 41,
             "function": "makeResponseCallIfEnabledAndNoSuccessResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 236,
             "function": "__invoke",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 172,
             "function": "iterateThroughStrategies",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 127,
             "function": "fetchResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 119,
             "function": "processRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 73,
             "function": "processRoutes",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
             "line": 36,
             "function": "handle",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
@@ -3143,67 +2897,66 @@ fetch(url, {
             "line": 136,
             "function": "call",
             "class": "Illuminate\\Container\\Container",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Command\\Command.php",
             "line": 256,
             "function": "execute",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
             "line": 121,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 971,
             "function": "run",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 290,
             "function": "doRunCommand",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 166,
             "function": "doRun",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
             "line": 92,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
             "line": 129,
             "function": "run",
             "class": "Illuminate\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\artisan",
             "line": 37,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-villa-dates--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-villa-dates--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-villa-dates--id-"></code></pre>
@@ -3230,24 +2983,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/villa/reservedDates/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/villa/reservedDates/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/villa/reservedDates/voluptatem" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/reservedDates/voluptatem"
 );
 
@@ -3256,21 +3000,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "data": []
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-villa-reservedDates--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-villa-reservedDates--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-villa-reservedDates--id-"></code></pre>
@@ -3297,24 +3036,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/villa/similarVillas/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/villa/similarVillas/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/villa/similarVillas/eos" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/similarVillas/eos"
 );
 
@@ -3323,18 +3053,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (404):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (404):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "No query results for model [App\\Models\\Villa] eos",
     "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
     "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Exceptions\\Handler.php",
@@ -3345,301 +3071,301 @@ fetch(url, {
             "line": 330,
             "function": "prepareException",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\nunomaduro\\collision\\src\\Adapters\\Laravel\\ExceptionHandler.php",
             "line": 54,
             "function": "render",
             "class": "Illuminate\\Foundation\\Exceptions\\Handler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Pipeline.php",
             "line": 51,
             "function": "render",
             "class": "NunoMaduro\\Collision\\Adapters\\Laravel\\ExceptionHandler",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 130,
             "function": "handleException",
             "class": "Illuminate\\Routing\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
             "line": 50,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 127,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 103,
             "function": "handleRequest",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 55,
             "function": "handleRequestUsingNamedLimiter",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 695,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 670,
             "function": "runRouteWithinStack",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 636,
             "function": "runRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 625,
             "function": "dispatchToRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 166,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Foundation\\Http\\{closure}",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
             "line": 27,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
             "line": 86,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fruitcake\\Cors\\HandleCors",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 141,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 110,
             "function": "sendRequestThroughRouter",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 324,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 305,
             "function": "callLaravelOrLumenRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 76,
             "function": "makeApiCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 51,
             "function": "makeResponseCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 41,
             "function": "makeResponseCallIfEnabledAndNoSuccessResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 236,
             "function": "__invoke",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 172,
             "function": "iterateThroughStrategies",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 127,
             "function": "fetchResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 119,
             "function": "processRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 73,
             "function": "processRoutes",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
             "line": 36,
             "function": "handle",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
@@ -3674,67 +3400,66 @@ fetch(url, {
             "line": 136,
             "function": "call",
             "class": "Illuminate\\Container\\Container",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Command\\Command.php",
             "line": 256,
             "function": "execute",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
             "line": 121,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 971,
             "function": "run",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 290,
             "function": "doRunCommand",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 166,
             "function": "doRun",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
             "line": 92,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
             "line": 129,
             "function": "run",
             "class": "Illuminate\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\artisan",
             "line": 37,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-villa-similarVillas--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-villa-similarVillas--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-villa-similarVillas--id-"></code></pre>
@@ -3761,24 +3486,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/villa/store
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/villa/store</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/villa/store" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/villa/store"
 );
 
@@ -3787,14 +3503,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-villa-store" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-villa-store"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-villa-store"></code></pre>
@@ -3815,24 +3527,15 @@ fetch(url, {
  <b><code>api/v1/villa/store</code></b>
 </p>
 </form>
-
-
-## api/v1/user/getUserInfo
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/getUserInfo</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/getUserInfo" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/getUserInfo"
 );
 
@@ -3841,21 +3544,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-getUserInfo" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-getUserInfo"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-getUserInfo"></code></pre>
@@ -3876,24 +3574,15 @@ fetch(url, {
  <b><code>api/v1/user/getUserInfo</code></b>
 </p>
 </form>
-
-
-## api/v1/user/updateInfo
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/updateInfo</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/updateInfo" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/updateInfo"
 );
 
@@ -3902,14 +3591,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-updateInfo" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-updateInfo"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-updateInfo"></code></pre>
@@ -3930,24 +3615,15 @@ fetch(url, {
  <b><code>api/v1/user/updateInfo</code></b>
 </p>
 </form>
-
-
-## api/v1/user/reserves
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/reserves</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/reserves" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/reserves"
 );
 
@@ -3956,21 +3632,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-reserves" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-reserves"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-reserves"></code></pre>
@@ -3991,24 +3662,15 @@ fetch(url, {
  <b><code>api/v1/user/reserves</code></b>
 </p>
 </form>
-
-
-## api/v1/user/transactions
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/transactions</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/transactions" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/transactions"
 );
 
@@ -4017,21 +3679,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-transactions" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-transactions"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-transactions"></code></pre>
@@ -4052,24 +3709,15 @@ fetch(url, {
  <b><code>api/v1/user/transactions</code></b>
 </p>
 </form>
-
-
-## api/v1/user/villas
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/villas</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/villas" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/villas"
 );
 
@@ -4078,21 +3726,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-villas" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-villas"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-villas"></code></pre>
@@ -4113,24 +3756,15 @@ fetch(url, {
  <b><code>api/v1/user/villas</code></b>
 </p>
 </form>
-
-
-## api/v1/user/editVilla/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/editVilla/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/editVilla/velit" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/editVilla/velit"
 );
 
@@ -4139,21 +3773,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-editVilla--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-editVilla--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-editVilla--id-"></code></pre>
@@ -4180,24 +3809,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/getUserVillaComments/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/getUserVillaComments/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/getUserVillaComments/voluptates" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/getUserVillaComments/voluptates"
 );
 
@@ -4206,21 +3826,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-getUserVillaComments--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-getUserVillaComments--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-getUserVillaComments--id-"></code></pre>
@@ -4247,24 +3862,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/replayComment/{villaId}/{parentId}
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/replayComment/{villaId}/{parentId}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/replayComment/consectetur/dolore" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/replayComment/consectetur/dolore"
 );
 
@@ -4273,14 +3879,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-replayComment--villaId---parentId-" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-replayComment--villaId---parentId-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-replayComment--villaId---parentId-"></code></pre>
@@ -4312,24 +3914,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/addComment/{villaId}
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/addComment/{villaId}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/addComment/numquam" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/addComment/numquam"
 );
 
@@ -4338,14 +3931,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-addComment--villaId-" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-addComment--villaId-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-addComment--villaId-"></code></pre>
@@ -4372,24 +3961,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/villaDates/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/villaDates/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/villaDates/qui" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/villaDates/qui"
 );
 
@@ -4398,21 +3978,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-villaDates--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-villaDates--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-villaDates--id-"></code></pre>
@@ -4439,24 +4014,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/changeDatesCost/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/changeDatesCost/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/changeDatesCost/officia" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/changeDatesCost/officia"
 );
 
@@ -4465,14 +4031,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-changeDatesCost--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-changeDatesCost--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-changeDatesCost--id-"></code></pre>
@@ -4499,24 +4061,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/changeDatesStatus/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/changeDatesStatus/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/changeDatesStatus/commodi" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/changeDatesStatus/commodi"
 );
 
@@ -4525,14 +4078,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-changeDatesStatus--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-changeDatesStatus--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-changeDatesStatus--id-"></code></pre>
@@ -4559,24 +4108,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/allReservationsRequested
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/allReservationsRequested</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/allReservationsRequested" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/allReservationsRequested"
 );
 
@@ -4585,21 +4125,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-allReservationsRequested" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-allReservationsRequested"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-allReservationsRequested"></code></pre>
@@ -4620,24 +4155,15 @@ fetch(url, {
  <b><code>api/v1/user/allReservationsRequested</code></b>
 </p>
 </form>
-
-
-## api/v1/user/reservationsRequested/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/reservationsRequested/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/reservationsRequested/corrupti" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/reservationsRequested/corrupti"
 );
 
@@ -4646,21 +4172,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-reservationsRequested--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-reservationsRequested--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-reservationsRequested--id-"></code></pre>
@@ -4687,24 +4208,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/changeReserveStatus/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/changeReserveStatus/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/changeReserveStatus/rerum" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/changeReserveStatus/rerum"
 );
 
@@ -4713,14 +4225,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-changeReserveStatus--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-changeReserveStatus--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-changeReserveStatus--id-"></code></pre>
@@ -4747,24 +4255,15 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-## api/v1/user/withdrawal
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/withdrawal</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/withdrawal" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/withdrawal"
 );
 
@@ -4773,14 +4272,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-withdrawal" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-withdrawal"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-withdrawal"></code></pre>
@@ -4801,24 +4296,15 @@ fetch(url, {
  <b><code>api/v1/user/withdrawal</code></b>
 </p>
 </form>
-
-
-## api/v1/user/favorites
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/user/favorites</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/user/favorites" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/favorites"
 );
 
@@ -4827,21 +4313,16 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (401):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (401):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Unauthenticated."
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-user-favorites" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-user-favorites"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-user-favorites"></code></pre>
@@ -4862,24 +4343,15 @@ fetch(url, {
  <b><code>api/v1/user/favorites</code></b>
 </p>
 </form>
-
-
-## api/v1/user/addToFavorite
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/addToFavorite</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/addToFavorite" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/addToFavorite"
 );
 
@@ -4888,14 +4360,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-addToFavorite" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-addToFavorite"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-addToFavorite"></code></pre>
@@ -4916,24 +4384,15 @@ fetch(url, {
  <b><code>api/v1/user/addToFavorite</code></b>
 </p>
 </form>
-
-
-## api/v1/user/removeFromFavorite
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/user/removeFromFavorite</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/user/removeFromFavorite" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/user/removeFromFavorite"
 );
 
@@ -4942,14 +4401,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-user-removeFromFavorite" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-user-removeFromFavorite"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-user-removeFromFavorite"></code></pre>
@@ -4970,24 +4425,15 @@ fetch(url, {
  <b><code>api/v1/user/removeFromFavorite</code></b>
 </p>
 </form>
-
-
-## api/v1/login
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/login</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/login" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/login"
 );
 
@@ -4996,14 +4442,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-login" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-login"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-login"></code></pre>
@@ -5024,24 +4466,15 @@ fetch(url, {
  <b><code>api/v1/login</code></b>
 </p>
 </form>
-
-
-## api/v1/register
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/register</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/register" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/register"
 );
 
@@ -5050,14 +4483,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-register" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-register"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-register"></code></pre>
@@ -5078,24 +4507,15 @@ fetch(url, {
  <b><code>api/v1/register</code></b>
 </p>
 </form>
-
-
-## api/v1/sendRegisterSms
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/sendRegisterSms</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/sendRegisterSms" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/sendRegisterSms"
 );
 
@@ -5104,14 +4524,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-sendRegisterSms" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-sendRegisterSms"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-sendRegisterSms"></code></pre>
@@ -5132,24 +4548,15 @@ fetch(url, {
  <b><code>api/v1/sendRegisterSms</code></b>
 </p>
 </form>
-
-
-## api/v1/sendNormalSms
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/sendNormalSms</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/sendNormalSms" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/sendNormalSms"
 );
 
@@ -5158,14 +4565,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-sendNormalSms" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-sendNormalSms"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-sendNormalSms"></code></pre>
@@ -5186,24 +4589,15 @@ fetch(url, {
  <b><code>api/v1/sendNormalSms</code></b>
 </p>
 </form>
-
-
-## api/v1/verifySmsCode
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/verifySmsCode</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/verifySmsCode" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/verifySmsCode"
 );
 
@@ -5212,14 +4606,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-verifySmsCode" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-verifySmsCode"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-verifySmsCode"></code></pre>
@@ -5240,24 +4630,15 @@ fetch(url, {
  <b><code>api/v1/verifySmsCode</code></b>
 </p>
 </form>
-
-
-## api/v1/search
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/search</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/search" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/search"
 );
 
@@ -5266,18 +4647,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "data": [
         {
             "id": 23,
@@ -5316,7 +4693,7 @@ fetch(url, {
         "links": [
             {
                 "url": null,
-                "label": "&laquo; Previous",
+                "label": "&amp;laquo; Previous",
                 "active": false
             },
             {
@@ -5366,7 +4743,7 @@ fetch(url, {
             },
             {
                 "url": "http:\/\/localhost\/api\/v1\/search?page=2",
-                "label": "Next &raquo;",
+                "label": "Next &amp;raquo;",
                 "active": false
             }
         ],
@@ -5375,8 +4752,7 @@ fetch(url, {
         "to": 2,
         "total": 17
     }
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-search" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-search"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-search"></code></pre>
@@ -5397,24 +4773,15 @@ fetch(url, {
  <b><code>api/v1/search</code></b>
 </p>
 </form>
-
-
-## api/v1/doSearch
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/doSearch</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/doSearch" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/doSearch"
 );
 
@@ -5423,18 +4790,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (200):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (200):</p>
+</blockquote>
+<pre><code class="language-json">{
     "data": [
         {
             "id": 4,
@@ -5537,7 +4900,7 @@ fetch(url, {
         "links": [
             {
                 "url": null,
-                "label": "&laquo; Previous",
+                "label": "&amp;laquo; Previous",
                 "active": false
             },
             {
@@ -5547,7 +4910,7 @@ fetch(url, {
             },
             {
                 "url": null,
-                "label": "Next &raquo;",
+                "label": "Next &amp;raquo;",
                 "active": false
             }
         ],
@@ -5556,8 +4919,7 @@ fetch(url, {
         "to": 5,
         "total": 5
     }
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-doSearch" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-doSearch"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-doSearch"></code></pre>
@@ -5578,24 +4940,15 @@ fetch(url, {
  <b><code>api/v1/doSearch</code></b>
 </p>
 </form>
-
-
-## api/v1/reserveRequest
-
-
-
-
-> Example request:
-
-```bash
-curl -X POST \
+<h2>api/v1/reserveRequest</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X POST \
     "http://localhost/api/v1/reserveRequest" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/reserveRequest"
 );
 
@@ -5604,14 +4957,10 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "POST",
     headers,
-}).then(response => response.json());
-```
-
-
+}).then(response =&gt; response.json());</code></pre>
 <div id="execution-results-POSTapi-v1-reserveRequest" hidden>
     <blockquote>Received response<span id="execution-response-status-POSTapi-v1-reserveRequest"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-POSTapi-v1-reserveRequest"></code></pre>
@@ -5632,24 +4981,15 @@ fetch(url, {
  <b><code>api/v1/reserveRequest</code></b>
 </p>
 </form>
-
-
-## api/v1/factor/{id}
-
-
-
-
-> Example request:
-
-```bash
-curl -X GET \
+<h2>api/v1/factor/{id}</h2>
+<blockquote>
+<p>Example request:</p>
+</blockquote>
+<pre><code class="language-bash">curl -X GET \
     -G "http://localhost/api/v1/factor/placeat" \
     -H "Content-Type: application/json" \
-    -H "Accept: application/json"
-```
-
-```javascript
-const url = new URL(
+    -H "Accept: application/json"</code></pre>
+<pre><code class="language-javascript">const url = new URL(
     "http://localhost/api/v1/factor/placeat"
 );
 
@@ -5658,18 +4998,14 @@ let headers = {
     "Accept": "application/json",
 };
 
-
 fetch(url, {
     method: "GET",
     headers,
-}).then(response => response.json());
-```
-
-
-> Example response (500):
-
-```json
-{
+}).then(response =&gt; response.json());</code></pre>
+<blockquote>
+<p>Example response (500):</p>
+</blockquote>
+<pre><code class="language-json">{
     "message": "Trying to get property 'id' of non-object",
     "exception": "ErrorException",
     "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\app\\Http\\Controllers\\API\\v1\\FactorController.php",
@@ -5680,322 +5016,322 @@ fetch(url, {
             "line": 16,
             "function": "handleError",
             "class": "Illuminate\\Foundation\\Bootstrap\\HandleExceptions",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Controller.php",
             "line": 54,
             "function": "getFactor",
             "class": "App\\Http\\Controllers\\API\\v1\\FactorController",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\ControllerDispatcher.php",
             "line": 45,
             "function": "callAction",
             "class": "Illuminate\\Routing\\Controller",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
             "line": 254,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\ControllerDispatcher",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Route.php",
             "line": 197,
             "function": "runController",
             "class": "Illuminate\\Routing\\Route",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 693,
             "function": "run",
             "class": "Illuminate\\Routing\\Route",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Routing\\{closure}",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\SubstituteBindings.php",
             "line": 50,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\SubstituteBindings",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 127,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 103,
             "function": "handleRequest",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Middleware\\ThrottleRequests.php",
             "line": 55,
             "function": "handleRequestUsingNamedLimiter",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Routing\\Middleware\\ThrottleRequests",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 695,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 670,
             "function": "runRouteWithinStack",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 636,
             "function": "runRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Routing\\Router.php",
             "line": 625,
             "function": "dispatchToRoute",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 166,
             "function": "dispatch",
             "class": "Illuminate\\Routing\\Router",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 128,
             "function": "Illuminate\\Foundation\\Http\\{closure}",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest.php",
             "line": 21,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize.php",
             "line": 27,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance.php",
             "line": 86,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fruitcake\\laravel-cors\\src\\HandleCors.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fruitcake\\Cors\\HandleCors",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\fideloper\\proxy\\src\\TrustProxies.php",
             "line": 57,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 167,
             "function": "handle",
             "class": "Fideloper\\Proxy\\TrustProxies",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Pipeline\\Pipeline.php",
             "line": 103,
             "function": "Illuminate\\Pipeline\\{closure}",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 141,
             "function": "then",
             "class": "Illuminate\\Pipeline\\Pipeline",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php",
             "line": 110,
             "function": "sendRequestThroughRouter",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 324,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Http\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 305,
             "function": "callLaravelOrLumenRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 76,
             "function": "makeApiCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 51,
             "function": "makeResponseCall",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Strategies\\Responses\\ResponseCalls.php",
             "line": 41,
             "function": "makeResponseCallIfEnabledAndNoSuccessResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 236,
             "function": "__invoke",
             "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 172,
             "function": "iterateThroughStrategies",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Extracting\\Generator.php",
             "line": 127,
             "function": "fetchResponses",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 119,
             "function": "processRoute",
             "class": "Knuckles\\Scribe\\Extracting\\Generator",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\knuckleswtf\\scribe\\src\\Commands\\GenerateDocumentation.php",
             "line": 73,
             "function": "processRoutes",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php",
             "line": 36,
             "function": "handle",
             "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php",
@@ -6030,67 +5366,66 @@ fetch(url, {
             "line": 136,
             "function": "call",
             "class": "Illuminate\\Container\\Container",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Command\\Command.php",
             "line": 256,
             "function": "execute",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php",
             "line": 121,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Command\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 971,
             "function": "run",
             "class": "Illuminate\\Console\\Command",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 290,
             "function": "doRunCommand",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\symfony\\console\\Application.php",
             "line": 166,
             "function": "doRun",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Application.php",
             "line": 92,
             "function": "run",
             "class": "Symfony\\Component\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php",
             "line": 129,
             "function": "run",
             "class": "Illuminate\\Console\\Application",
-            "type": "->"
+            "type": "-&gt;"
         },
         {
             "file": "C:\\Users\\shirz\\OneDrive\\Desktop\\villa\\artisan",
             "line": 37,
             "function": "handle",
             "class": "Illuminate\\Foundation\\Console\\Kernel",
-            "type": "->"
+            "type": "-&gt;"
         }
     ]
-}
-```
+}</code></pre>
 <div id="execution-results-GETapi-v1-factor--id-" hidden>
     <blockquote>Received response<span id="execution-response-status-GETapi-v1-factor--id-"></span>:</blockquote>
     <pre class="json"><code id="execution-response-content-GETapi-v1-factor--id-"></code></pre>
@@ -6117,6 +5452,19 @@ fetch(url, {
 <br>
 </p>
 </form>
-
-
-
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var languages = ["bash","javascript"];
+        setupLanguages(languages);
+    });
+</script>
+</body>
+</html>

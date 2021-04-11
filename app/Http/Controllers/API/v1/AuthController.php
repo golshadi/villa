@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\api\v1;
+namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\SendSmsAuthJob;
@@ -21,7 +21,7 @@ class AuthController extends Controller
         $user = User::create([
             'fullname' => $dataValidation['fullname'],
             'phone_number' => $dataValidation['phone_number'],
-            'sms_expire' => time() + (2 * 60)
+            'sms_expire' => time() + (3 * 60)
         ]);
 
         return $this->sendRegisterSms($request->phone_number, $user);
@@ -31,24 +31,15 @@ class AuthController extends Controller
     public function sendRegisterSms($phone_number, $user)
 
     {
-        $codeExpire = $user->sms_expire;
-        $send_sms_time = $codeExpire - (2 * 60);
-        if (($send_sms_time + 5 <= $codeExpire) or (time() >= $codeExpire)) {
             $code = mt_rand(100000, 999999);
             SendSmsAuthJob::dispatch($phone_number, $code);
             $user->update([
                 'sms_code' => $code
             ]);
             return response()->json(['status' => 2, 'message' => 'SMS sent']);
-        } else {
-            return response()->json(['status' => 1, 'message' => 'SMS has been sent. Try again in 2 minutes']);
-        }
     }
 
-
-
     public function sendNormalSms($phone_number)
-
     {
         $user = User::where('phone_number', $phone_number)->first();
         if ($user) {
@@ -58,7 +49,7 @@ class AuthController extends Controller
                 SendSmsAuthJob::dispatch($phone_number, $code);
                 $user->update([
                     'sms_code' => $code,
-                    'sms_expire' => time() + (60 * 2)
+                    'sms_expire' => time() + (60 * 3)
                 ]);
                 return response()->json(['status' => 2, 'message' => 'SMS sent']);
             } else {
@@ -80,13 +71,9 @@ class AuthController extends Controller
 
         if (($userCode == $realCode) and (time() <= $smsExpire)) {
             Auth::loginUsingId($user->id);
-            // if (Auth::attempt(['phone_number' => $phone_number, 'sms_code' => $userCode])) {
                 auth()->user()->tokens()->delete();
                 $token = auth()->user()->createToken('Api Token on Website')->accessToken;
                 return response()->json(['data' => ['user' => auth()->user(), 'token' => $token]]);
-            // }else{
-                // return response()->json(['status' => 5, 'message' => 'Password incorrect or Phone number is invalid']);
-            // }
         }
 
         return response()->json(['status' => 4, 'message' => 'Code is invalid or SmsCode timedout!']);
@@ -97,6 +84,6 @@ class AuthController extends Controller
         $validData = $this->validate($request, [
             'phone_number' => 'required|exists:users'
         ]);
-        $this->sendNormalSms($request->phone_number);
+       return $this->sendNormalSms($request->phone_number);
     }
 }
