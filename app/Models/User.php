@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
-    use HasApiTokens,HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -43,67 +43,82 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function villas(){
+    public function villas()
+    {
         return $this->hasMany(Villa::class);
     }
-    
-    public function comments(){
+
+    public function comments()
+    {
         return $this->hasMany(Comment::class);
     }
 
-    public function reservations(){
+    public function reservations()
+    {
         return $this->hasMany(Reservation::class);
     }
-    public function reservation(){
+    public function reservation()
+    {
         return $this->hasMany(Reservation::class);
     }
-    public function transactions(){
+    public function transactions()
+    {
         return $this->hasMany(Transaction::class);
     }
 
-    public function requestedReserves(){
+    public function requestedReserves()
+    {
         return $this->hasMany(ReservedDate::class);
     }
-    public function withdrawals(){
+    public function withdrawals()
+    {
         return $this->hasMany(Withdrawal::class);
     }
-    public function favorites(){
+    public function favorites()
+    {
         return $this->hasMany(Favorite::class);
     }
 
-    public static function saveDates($recievedDates,$special_price='',$villaId,$status=''){
-
-        $filedKey=$special_price!='' ? 'special_price' : 'status';
-        $filedValue=$special_price!='' ? $special_price : $status;
-
-        $userId=Auth::user()->id;
-
-        $villa=Villa::where([['id',$villaId],['user_id',$userId]])->first();
-        $dates=$recievedDates;
-        $dates=explode(',',$dates);
-        $dataArray=[];
-        $datesArray=[];
-
-        if($villa){
-        foreach($dates as $key=>$value){
-            $date=explode('/',$value);
-            $datesArray[$key]=$date;
-            $currentUserDate=str_replace(',','-',implode(',',Verta::getGregorian($date[0],$date[1],$date[2])));
-            $dataArray[$key]=
-            [
-            'villa_id'=>$villa->id,
-            'user_id'=>$userId,
-            'date'=>$currentUserDate,
-            $filedKey=>$filedValue
-            ];
-            Date::updateOrCreate([
-                'villa_id'=>$villa->id,
-                'user_id'=>$userId,
-                'date'=>$currentUserDate
-            ],$dataArray[$key]);
-        }
-        return response()->json(['data'=>'Done']);       
+    public function financialStatements()
+    {
+        return $this->hasMany(FinancialReport::class);
     }
-        return response()->json(['data'=>'Something went wrong!']);
+
+
+    public static function saveDates($recievedDates, $special_price = '', $villaId, $status = '')
+    {
+
+        $filedKey = $special_price != '' ? 'special_price' : 'status';
+        $filedValue = $special_price != '' ? $special_price : $status;
+
+        $userId = Auth::user()->id;
+
+        $villa = Villa::where([['id', $villaId], ['user_id', $userId]])->first();
+        $dates = $recievedDates;
+        $dates = explode(',', $dates);
+        $dataArray = [];
+        $datesArray = [];
+
+        if ($villa) {
+            foreach ($dates as $key => $value) {
+                $date = explode('/', $value);
+                $datesArray[$key] = $date;
+                $currentUserDate = str_replace(',', '-', implode(',', Verta::getGregorian($date[0], $date[1], $date[2])));
+                $dataArray[$key] =
+                    [
+                        'villa_id' => $villa->id,
+                        'user_id' => $userId,
+                        'date' => $currentUserDate,
+                        $filedKey => $filedValue
+                    ];
+                Date::updateOrCreate([
+                    'villa_id' => $villa->id,
+                    'user_id' => $userId,
+                    'date' => $currentUserDate
+                ], $dataArray[$key]);
+            }
+            return response()->json(['data' => 'Done']);
+        }
+        return response()->json(['data' => 'Something went wrong!']);
     }
 }

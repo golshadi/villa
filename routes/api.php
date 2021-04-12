@@ -44,7 +44,10 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::get('favorites', 'FavoriteController@getFavorites');
         Route::post('addToFavorite','FavoriteController@addToFavorite');
         Route::post('removeFromFavorite','FavoriteController@removeFromFavorite');
+        Route::get('getFinancialReports','UserController@getFinancialReports');
+        Route::post('setFinancialReports','UserController@setFinancialReports');
     });
+    Route::get('villaIncome/{id}','UserController@villaIncome');
 
     Route::post('login','AuthController@login');
     Route::post('register','AuthController@register');
@@ -64,5 +67,10 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
     // Factor Api Routes
     Route::get('factor/{id}', 'FactorController@getFactor'); // id ==> Reserve id
 
-    
+    // Pay Api Routes
+    Route::post('/request/pay', 'PaymentController@pay');
+    Route::get('/payir/callback', 'PaymentController@verify');
+    Route::post('/getPayStatus','PaymentController@getPayStatus');
+
+
 });

@@ -19,6 +19,11 @@ class Reservation extends Model
         return $this->belongsTo(Villa::class);
     }
 
+    
+    public function pay()
+    {
+        return $this->hasOne(Pay::class);
+    }
 
     
 }

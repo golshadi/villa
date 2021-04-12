@@ -52,6 +52,6 @@ class Villa extends Model
     {
         return $this->hasMany(Search::class);
     }
- 
+
 
 }

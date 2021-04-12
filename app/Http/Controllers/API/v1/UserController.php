@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\v1\user\FinancialReportsCollection;
 use App\Http\Resources\v1\User\UserReservationsCollection;
 use App\Http\Resources\v1\User\UserTransactionsCollection;
 use App\Http\Resources\v1\User\UserVillaDatesCollection;
 use App\Http\Resources\v1\User\UserVillaReservationsCollection;
 use App\Http\Resources\v1\User\UserVillasCollection;
+use App\Http\Resources\v1\user\VillaIncomeCollection;
+use App\Models\FinancialReport;
 use App\Models\Reservation;
 use App\Models\ReservedDate;
 use App\Models\User;
@@ -136,6 +139,7 @@ class UserController extends Controller
     public function withdrawal(Request $request)
     {
         $user = Auth::user();
+        $this->validate($request,['requested_amount'=>'required|numeric']);
         Withdrawal::create([
             'user_id' => $user->id,
             'requested_amount' => $request->requested_amount
@@ -145,11 +149,44 @@ class UserController extends Controller
 
     public function editVilla($id)
     {
-        $user = Auth::loginUsingId(7);
+        $user = Auth::user();
         $villa = Villa::where([['user_id', $user->id], ['id', $id]])->with(['detail', 'rule', 'info', 'images'])->get();
         if (!$villa->IsEmpty()) {
             return response()->json(['data' => $villa]);
         }
         return response()->json(['status' => 404, 'data' => 'Villa not found']);
     }
+
+    public function getFinancialReports(){
+        $user=Auth::user();
+        $financialReports=$user->financialStatements;
+        $trappIncome=ReservedDate::whereIn('villa_id',$user->villas->pluck('id')->toArray())
+        ->where('status',2)
+        ->sum('final_cost');
+        $otherIncome=FinancialReport::where('user_id',$user->id)->sum('amount');
+        return new FinancialReportsCollection($financialReports,[$trappIncome,$otherIncome]);
+        // return response()->json(['data'=>$otherIncome]);
+
+    }
+    
+    public function setFinancialReports(Request $request){
+        $user=Auth::user();
+        $validation=$this->validate($request,[
+            'date'=>'required',
+            'src'=>'required',
+            'description'=>'required',
+            'amount'=>'required|numeric'
+        ]);
+
+        $user->financialStatements()->create($validation);
+
+        return response()->json(['data'=>'Done']);
+    }
+
+    public function villaIncome($id){
+        $user=Auth::loginUsingId(7);
+        $villa=$user->villas->where('id',$id)->first();
+        return new VillaIncomeCollection($villa->reserves->where('status',2));
+    }
+
 }
