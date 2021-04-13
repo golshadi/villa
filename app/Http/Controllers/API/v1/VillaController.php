@@ -43,8 +43,9 @@ class VillaController extends Controller
 
     public function reservedDates($id)
     {
-        $reservedDates = ReservedDate::where([['villa_id', $id], ['status', 1]])->get();
-        return new VillaReservedDatesCollection($reservedDates);
+        $reservedDates = ReservedDate::where([['villa_id', $id], ['status', 2]])->get();
+        $customizedDates= Villa::where('id',$id)->first()->dates;
+        return new VillaReservedDatesCollection($reservedDates,$customizedDates);
     }
 
     public function similarVillas($id)

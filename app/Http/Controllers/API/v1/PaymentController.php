@@ -7,6 +7,7 @@ use App\Models\Pay;
 use App\Models\Reservation;
 use App\Models\ReservedDate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use SaeedVaziry\Payir\Exceptions\SendException;
 use SaeedVaziry\Payir\Exceptions\VerifyException;
 use SaeedVaziry\Payir\PayirPG;
@@ -33,7 +34,9 @@ class PaymentController extends Controller
                 'user_reservation_id' => $request->reservation_id,
                 'name' => 'Trapp',
                 'mobile' => '0999999999',
-                'email' => 'info@trapp.com'
+                'email' => 'info@trapp.com',
+                'user_id'=>Auth::user()->id,
+                'villa_id'=>$request->villa_id
             ]);
 
             if ($pay['status'] == 1) {

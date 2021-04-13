@@ -13,6 +13,16 @@ class VillaReservedDatesCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+    private $customizedDates;
+    
+    public function __construct($resource,$customizedDates)
+    {
+        parent::__construct($resource);
+        $this->resource = $resource;
+        $this->customizedDates = $customizedDates;
+    }
+
     public function toArray($request)
     {
         return [
@@ -21,6 +31,13 @@ class VillaReservedDatesCollection extends ResourceCollection
                     'id'=>$item->id,
                     'start_date'=>Verta::instance($item->start_date)->format('Y/n/j'),
                     'end_date'=>Verta::instance($item->end_date)->format('Y/n/j')
+                ];
+            }),
+            'customizedDates' => $this->customizedDates->map(function($item) {
+                return [
+                    'date'=>Verta::instance($item->start_date)->format('Y/n/j'),
+                    'status'=>$item->status, // 0 => Empty  |  1 => Reserved
+                    'psecial_price'=>$item->special_price
                 ];
             })
         ];

@@ -38,7 +38,7 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::post('changeDatesCost/{id}', 'UserController@changeDatesCost');
         Route::post('changeDatesStatus/{id}', 'UserController@changeDatesStatus');
         Route::get('allReservationsRequested', 'UserController@allReservationsRequested');
-        Route::get('reservationsRequested/{id}', 'UserController@reservationsRequested');
+        Route::get('reservationsRequested/{id}', 'UserController@reservationsRequested');    
         Route::post('changeReserveStatus/{id}', 'UserController@changeReserveStatus');
         Route::post('withdrawal', 'UserController@withdrawal');
         Route::get('favorites', 'FavoriteController@getFavorites');
@@ -46,8 +46,9 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::post('removeFromFavorite','FavoriteController@removeFromFavorite');
         Route::get('getFinancialReports','UserController@getFinancialReports');
         Route::post('setFinancialReports','UserController@setFinancialReports');
+        Route::get('villaIncome/{id}','UserController@villaIncome');
     });
-    Route::get('villaIncome/{id}','UserController@villaIncome');
+
 
     Route::post('login','AuthController@login');
     Route::post('register','AuthController@register');

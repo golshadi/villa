@@ -3,7 +3,7 @@
 namespace App\Http\Resources\v1\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Verta;
+use Hekmatinasser\Verta\Verta;
 
 class UserVillaDatesCollection extends ResourceCollection
 {
@@ -15,12 +15,14 @@ class UserVillaDatesCollection extends ResourceCollection
      */
 
     private $rules;
+    private $reserves;
     
-    public function __construct($resource, $rules)
+    public function __construct($resource, $rules,$reserves)
     {
         parent::__construct($resource);
         $this->resource = $resource;
         $this->rules = $rules;
+        $this->reserves = $reserves;
     }
     public function toArray($request)
     {
@@ -31,6 +33,12 @@ class UserVillaDatesCollection extends ResourceCollection
                     'date' => Verta::instance($item->date)->format('Y/n/j'),
                     'status'=>$item->status,
                     'special_price'=>$item->special_price,
+                ];
+            }),
+            'reserves' => $this->reserves->map(function($item) {
+                return [
+                    'start_date'=>Verta::instance($item->start_date)->format('Y/n/j'),
+                    'end_date' => Verta::instance($item->end_date)->format('Y/n/j'),
                 ];
             }),
             'rules'=>[

@@ -3,7 +3,7 @@
 namespace App\Http\Resources\v1\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Verta;
+use Hekmatinasser\Verta\Verta;
 
 class UserTransactionsCollection extends ResourceCollection
 {
@@ -13,17 +13,27 @@ class UserTransactionsCollection extends ResourceCollection
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+    private $userId;
+
+    public function __construct($resource,$userId)
+    {
+        parent::__construct($resource);
+        $this->resource = $resource;
+        $this->userId=$userId;        
+    }
     public function toArray($request)
     {
         return [
             'data' => $this->collection->map(function($item) {
                 return [
                     'id'=>$item->id,
-                    'type' => $item->type==0 ? 'برداشت' : 'واریز',
-                    'date'=>Verta::instance($item->date)->format('Y/n/j'),
-                    'cost'=>$item->cost,
-                    'description'=>$item->description,
-                    'status'=>$item->status==0 ? 'پرداخت نشده' : 'پرداخت شده'    
+                    'type'=>$item->user_id == $this->userId ? 'برداشت' 
+                    : 'واریز',
+                    'date'=>Verta::instance($item->updated_at)->format('Y/n/j'),
+                    'amount' => $item->amount,
+                    'description'=>$item->user_id == $this->userId ? 'برداشت پول' 
+                    : 'اجاره ویلا',
+                    'status'=>'پرداخت شد'  
                 ];
             })
         ];      

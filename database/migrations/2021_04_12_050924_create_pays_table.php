@@ -24,6 +24,8 @@ class CreatePaysTable extends Migration
             $table->string('mobile');
             $table->string('email');
             $table->integer('status')->default(0);
+            $table->bigInteger('villa_id');
+            $table->bigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('villa_reservation_id')->references('id')->on('villa_reservation')->onDelete('cascade')->onUpdate('cascade');

@@ -19,7 +19,7 @@ class CreateVillaDatesTable extends Migration
             $table->bigInteger('villa_id')->unsigned();     
             $table->bigInteger('user_id')->unsigned();
             $table->timestamp('date')->default(Carbon::now());   
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(0);
             $table->bigInteger('special_price')->nullable();
             $table->timestamps();
 

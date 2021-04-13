@@ -11,6 +11,7 @@ use App\Http\Resources\v1\User\UserVillaReservationsCollection;
 use App\Http\Resources\v1\User\UserVillasCollection;
 use App\Http\Resources\v1\user\VillaIncomeCollection;
 use App\Models\FinancialReport;
+use App\Models\Pay;
 use App\Models\Reservation;
 use App\Models\ReservedDate;
 use App\Models\User;
@@ -68,8 +69,11 @@ class UserController extends Controller
     public function transactions()
     {
         $user = Auth::user();
-        $transactions = $user->transactions;
-        return new UserTransactionsCollection($transactions);
+        $userTransactions = Pay::where([['user_id',$user->id],['refid','!=',null]])->get();
+        $villaTransactions = Pay::where('refid','!=',null)
+        ->whereIn('villa_id',$user->villas->pluck('id')->toArray())->get();
+        $data=$userTransactions->merge($villaTransactions);
+        return new UserTransactionsCollection($data,$user->id);
     }
 
     public function villas()
@@ -81,10 +85,12 @@ class UserController extends Controller
 
     public function villaDates($id)
     {
-        $villa = Villa::findOrFail($id);
+        $userId=Auth::user()->id;
+        $villa = Villa::where([['id',$id],['user_id',$userId]])->first();
         $dates = $villa->dates;
         $rules = $villa->rule;
-        return new UserVillaDatesCollection($dates, $rules);
+        $reserves = ReservedDate::where([['villa_id', $id],['status',2]])->get();
+        return new UserVillaDatesCollection($dates, $rules,$reserves);
     }
 
     public function changeDatesCost(Request $request, $id)
@@ -119,8 +125,13 @@ class UserController extends Controller
 
     public function reservationsRequested($id)
     {
+        $userId = Auth::user()->id;
+        $userVillaIds=Villa::where('user_id',$userId)->pluck('id')->toArray();
+        if(in_array($id,$userVillaIds)){
         $requests = ReservedDate::where('villa_id', $id)->get();
         return new UserVillaReservationsCollection($requests);
+        }
+        return response()->json(['data','Villa not found']);
     }
 
     public function changeReserveStatus(Request $request, $id)
@@ -184,7 +195,7 @@ class UserController extends Controller
     }
 
     public function villaIncome($id){
-        $user=Auth::loginUsingId(7);
+        $user=Auth::user();
         $villa=$user->villas->where('id',$id)->first();
         return new VillaIncomeCollection($villa->reserves->where('status',2));
     }
