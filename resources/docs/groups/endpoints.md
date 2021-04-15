@@ -1849,14 +1849,14 @@ fetch(url, {
 
 ```bash
 curl -X GET \
-    -G "http://localhost/api/v1/villa/comments/quod" \
+    -G "http://localhost/api/v1/villa/comments/{id}" \
     -H "Content-Type: application/json" \
     -H "Accept: application/json"
 ```
 
 ```javascript
 const url = new URL(
-    "http://localhost/api/v1/villa/comments/quod"
+    "http://127.0.0.1:8000/api/v1/villa/comments/4"
 );
 
 let headers = {

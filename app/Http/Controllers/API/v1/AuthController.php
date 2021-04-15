@@ -15,7 +15,7 @@ class AuthController extends Controller
         // Validation Data
         $dataValidation = $this->validate($request, [
             'fullname' => 'required|max:255',
-            'phone_number' => 'required|max:11|unique:users'
+            'phone_number' => 'required|min:11|max:11|unique:users'
         ]);
 
         $user = User::create([
@@ -53,7 +53,7 @@ class AuthController extends Controller
                 ]);
                 return response()->json(['status' => 2, 'message' => 'SMS sent']);
             } else {
-                return response()->json(['status' => 1, 'message' => 'SMS has been sent. Try again in 2 minutes']);
+                return response()->json(['status' => 1, 'message' => 'SMS has been sent. Try again in 3 minutes']);
             }
         } else {
             return response()->json(['status' => 0, 'message' => 'There is no user with this phone number']);
@@ -62,7 +62,10 @@ class AuthController extends Controller
 
     public function verifySmsCode(Request $request)
     {
-
+        $this->validate($request,[
+            'phone_number'=>'required|min:11|max:11|exists:users,phone_number',
+            'sms_code'=>'required|min:6|max:6'
+        ]);
         $userCode = $request->sms_code;
         $phone_number = $request->phone_number;
         $user = User::where('phone_number', $phone_number)->first();
@@ -82,7 +85,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $validData = $this->validate($request, [
-            'phone_number' => 'required|exists:users'
+            'phone_number' => 'required|min:11|max:11|exists:users'
         ]);
        return $this->sendNormalSms($request->phone_number);
     }

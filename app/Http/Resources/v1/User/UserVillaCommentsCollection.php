@@ -3,7 +3,7 @@
 namespace App\Http\Resources\v1\User;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Verta;
+use Hekmatinasser\Verta\Verta;
 
 class UserVillaCommentsCollection extends ResourceCollection
 {

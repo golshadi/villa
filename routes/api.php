@@ -19,13 +19,13 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::get('dates/{id}', 'VillaController@dates');
         Route::get('reservedDates/{id}', 'VillaController@reservedDates');
         Route::get('similarVillas/{id}', 'VillaController@similarVillas');
-        Route::post('store','VillaController@store');
+        Route::post('store', 'VillaController@store')->middleware('auth:api');
     });
 
 
     // User Api Routes
     Route::middleware('auth:api')->prefix('user')->group(function () {
-        Route::get('getUserInfo','UserController@getUserInfo');
+        Route::get('getUserInfo', 'UserController@getUserInfo');
         Route::post('updateInfo', 'UserController@updateInfo');
         Route::get('reserves', 'UserController@reserves');
         Route::get('transactions', 'UserController@transactions');
@@ -38,40 +38,40 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::post('changeDatesCost/{id}', 'UserController@changeDatesCost');
         Route::post('changeDatesStatus/{id}', 'UserController@changeDatesStatus');
         Route::get('allReservationsRequested', 'UserController@allReservationsRequested');
-        Route::get('reservationsRequested/{id}', 'UserController@reservationsRequested');    
+        Route::get('reservationsRequested/{id}', 'UserController@reservationsRequested');
         Route::post('changeReserveStatus/{id}', 'UserController@changeReserveStatus');
         Route::post('withdrawal', 'UserController@withdrawal');
         Route::get('favorites', 'FavoriteController@getFavorites');
-        Route::post('addToFavorite','FavoriteController@addToFavorite');
-        Route::post('removeFromFavorite','FavoriteController@removeFromFavorite');
-        Route::get('getFinancialReports','UserController@getFinancialReports');
-        Route::post('setFinancialReports','UserController@setFinancialReports');
-        Route::get('villaIncome/{id}','UserController@villaIncome');
+        Route::post('addToFavorite', 'FavoriteController@addToFavorite');
+        Route::post('removeFromFavorite', 'FavoriteController@removeFromFavorite');
+        Route::get('getFinancialReports', 'UserController@getFinancialReports');
+        Route::post('setFinancialReports', 'UserController@setFinancialReports');
+        Route::get('villaIncome/{id}', 'UserController@villaIncome');
     });
 
 
-    Route::post('login','AuthController@login');
-    Route::post('register','AuthController@register');
-    Route::post('sendRegisterSms','AuthController@sendRegisterSms');
-    Route::post('sendNormalSms','AuthController@sendNormalSms');
-    Route::post('verifySmsCode','AuthController@verifySmsCode');
+    Route::post('login', 'AuthController@login');
+    Route::post('register', 'AuthController@register');
+    Route::post('verifySmsCode', 'AuthController@verifySmsCode');
 
 
     // Search Api Routes
-    Route::get('search','SearchController@search');
-    Route::get('doSearch','SearchController@doSearch');
+    Route::get('search', 'SearchController@search');
+    Route::get('doSearch', 'SearchController@doSearch');
 
 
-    // Reservation Api Routes
-    Route::post('reserveRequest','ReservationController@reserveRequest');
+    Route::middleware('auth:api')->group(function () {
 
-    // Factor Api Routes
-    Route::get('factor/{id}', 'FactorController@getFactor'); // id ==> Reserve id
+        // Reservation Api Routes
+        Route::post('reserveRequest', 'ReservationController@reserveRequest');
 
-    // Pay Api Routes
-    Route::post('/request/pay', 'PaymentController@pay');
-    Route::get('/payir/callback', 'PaymentController@verify');
-    Route::post('/getPayStatus','PaymentController@getPayStatus');
+        // Factor Api Routes
+        Route::get('factor/{id}', 'FactorController@getFactor'); // id ==> Reserve id
 
+        // Pay Api Routes
+        Route::post('/request/pay', 'PaymentController@pay');
+        Route::get('/payir/callback', 'PaymentController@verify');
+        Route::post('/getPayStatus', 'PaymentController@getPayStatus');
+    });
 
 });

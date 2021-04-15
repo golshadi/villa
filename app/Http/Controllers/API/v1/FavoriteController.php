@@ -26,6 +26,7 @@ class FavoriteController extends Controller
     
     public function addToFavorite(Request $request)
     {
+        $this->validate($request,['villa_id'=>'required|numeric']);
         $user=Auth::user();
         $villa_id=$request->villa_id;
         $user->favorites()->create(['villa_id'=>$villa_id]);
@@ -34,6 +35,7 @@ class FavoriteController extends Controller
 
     public function removeFromFavorite(Request $request)
     {
+        $this->validate($request,['villa_id'=>'required|numeric']);
         $user=Auth::user();
         $villa_id=$request->villa_id;
         Favorite::where([['villa_id',$villa_id],['user_id',$user->id]])->delete();

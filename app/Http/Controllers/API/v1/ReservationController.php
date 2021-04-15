@@ -26,7 +26,7 @@ class ReservationController extends Controller
             'exit_date'=>'required',
             'cost'=>'required|numeric',
             'villa_id'=>'required',
-            'passengers_number'=>'required',
+            'passengers_number'=>'required|numeric',
             'extra_people'=>'required',
             'length_stay'=>'required',
         ]);

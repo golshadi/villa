@@ -36,14 +36,14 @@ class UserController extends Controller
 
         $validator = $this->validate($request, [
             'fullname' => 'required',
-            'phone_number' => 'required|max:11',
+            'phone_number' => 'required|max:11|min:11',
             'email' => 'email',
-            'notional_code' => 'max:10',
+            'notional_code' => 'max:10|min:10',
             'job' => 'max:100',
             'education' => 'max:100',
             'foreign_language' => 'max:100',
-            'card_number' => 'max:16',
-            'shaba_number' => 'max:24'
+            'card_number' => 'max:16|min:16',
+            'shaba_number' => 'max:24|min:24'
         ]);
 
         if ($request->hasFile('avatar')) {
@@ -56,7 +56,7 @@ class UserController extends Controller
         }
 
         $user->update($validator);
-        return response()->json(['data' => 'User data updated.']);
+        return response()->json(['data' => 'User data updated']);
     }
 
     public function reserves()
@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function villaDates($id)
     {
-        $userId=Auth::user()->id;
+        $userId=Auth::loginUsingId(7)->id;
         $villa = Villa::where([['id',$id],['user_id',$userId]])->first();
         $dates = $villa->dates;
         $rules = $villa->rule;
@@ -97,7 +97,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'dates' => 'required',
-            'special_price' => 'required'
+            'special_price' => 'required|numeric'
         ]);
         return User::saveDates($request->dates, $request->special_price, $id);
     }
@@ -125,7 +125,7 @@ class UserController extends Controller
 
     public function reservationsRequested($id)
     {
-        $userId = Auth::user()->id;
+        $userId = Auth::loginUsingId(7)->id;
         $userVillaIds=Villa::where('user_id',$userId)->pluck('id')->toArray();
         if(in_array($id,$userVillaIds)){
         $requests = ReservedDate::where('villa_id', $id)->get();
@@ -136,6 +136,7 @@ class UserController extends Controller
 
     public function changeReserveStatus(Request $request, $id)
     {
+        $this->validate($request,['status'=>'required|numeric']);
         $reserve = ReservedDate::findOrFail($id);
         $reserve->update([
             'status' => $request->status

@@ -78,7 +78,7 @@ class VillaController extends Controller
         $villaValidation = $this->validate($request, [
             'title' => 'required',
             'type' => 'required',
-            'phone_number' => 'required|max:11',
+            'phone_number' => 'required|max:11|min:11',
             'story' => 'required',
             'state' => 'required',
             'city' => 'required',

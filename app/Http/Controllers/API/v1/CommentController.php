@@ -52,11 +52,11 @@ class CommentController extends Controller
 
         $validatedData=$this->validate($request, [
             'text' => 'required',
-            'total_score'=>'required|min:0|max:5',
-            'cleaning'=>'required|min:0|max:5',
-            'ad_compliance'=>'required|min:0|max:5',
-            'hospitality'=>'required|min:0|max:5',
-            'hosting_quality'=>'required|min:0|max:5'
+            'total_score'=>'required|numeric|min:0|max:5',
+            'cleaning'=>'required|numeric|min:0|max:5',
+            'ad_compliance'=>'required|numeric|min:0|max:5',
+            'hospitality'=>'required|numeric|min:0|max:5',
+            'hosting_quality'=>'required|numeric|min:0|max:5'
         ]);
 
         $user=Auth::user();

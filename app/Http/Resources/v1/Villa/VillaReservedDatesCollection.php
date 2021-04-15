@@ -33,11 +33,11 @@ class VillaReservedDatesCollection extends ResourceCollection
                     'end_date'=>Verta::instance($item->end_date)->format('Y/n/j')
                 ];
             }),
-            'customizedDates' => $this->customizedDates->map(function($item) {
+            'customizedDates' => $this->customizedDates->map(function($item2) {
                 return [
-                    'date'=>Verta::instance($item->start_date)->format('Y/n/j'),
-                    'status'=>$item->status, // 0 => Empty  |  1 => Reserved
-                    'psecial_price'=>$item->special_price
+                    'date'=>Verta::instance($item2->date)->format('Y/n/j'),
+                    'status'=>$item2->status, // 0 => Empty  |  1 => Reserved
+                    'psecial_price'=>$item2->special_price
                 ];
             })
         ];

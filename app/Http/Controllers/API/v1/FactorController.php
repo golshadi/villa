@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class FactorController extends Controller
 {
     public function getFactor($id){
-        $user=Auth::user();
+        $user=Auth::loginUsingId(4);
         $factor=Reservation::where([['id',$id],['user_id',$user->id]])
         ->with('villa')->first();
         $details=Detail::where('villa_id',$factor->villa->id)->first();

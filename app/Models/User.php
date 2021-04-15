@@ -32,6 +32,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'sms_code',
+        'sms_expire'
     ];
 
     /**

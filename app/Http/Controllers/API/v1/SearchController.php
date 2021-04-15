@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\v1;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\Other\PopularVillasCollection;
 use App\Http\Resources\v1\Other\SearchCollection;
+use App\Models\Date;
 use App\Models\ReservedDate;
 use App\Models\Search;
 use App\Models\Villa;
@@ -177,9 +178,13 @@ class SearchController extends Controller
         )));
         $max_date = str_replace(',', '-', $max_date);
 
-        $dateResult = ReservedDate::whereBetween('start_date', [$min_date, $max_date])
-            ->orWhereBetween('end_date', [$min_date, $max_date])->pluck('villa_id')->toArray();
-        return $dateResult;
+        $dateResult1 = ReservedDate::whereBetween('start_date', [$min_date, $max_date])
+        ->orWhereBetween('end_date', [$min_date, $max_date])->pluck('villa_id')->toArray();
+
+        $dateResult2 = Date::where('status',1)->whereBetween('date', [$min_date, $max_date])
+        ->pluck('villa_id')->toArray();
+    
+            return array_merge($dateResult1,$dateResult2);
     }
 
     public function searchByArea($recivedArea)
