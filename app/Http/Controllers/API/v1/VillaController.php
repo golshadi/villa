@@ -17,6 +17,7 @@ use App\Models\ReservedDate;
 use App\Models\Rule;
 use App\Models\Search;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image as ImageEditor;
 
 class VillaController extends Controller
@@ -59,19 +60,21 @@ class VillaController extends Controller
     public function store(Request $request)
     {
         $user = Auth::user();
-        $villaId = $this->saveVillaData($request, $user);
-        $details = $this->saveVillaDetails($request, $villaId);
-        $info = $this->saveVillaInfo($request, $villaId);
-        $rules = $this->saveVillaRules($request, $villaId);
-        $images = $this->saveVillaImages($request, $villaId);
-        $search = $this->saveSearchData([
-            $request->city, $request->village, $request->max_capacity, $request->bedroom, $request->normal_cost,
-            $request->type, $request->weekly_discount, $request->monthly_discount, $request->disinfected
-        ], $villaId);
-
-        return response()->json(['data' => 'Done successfully']);
+       
+        DB::transaction(function () use($request,$user){
+            $villaId = $this->saveVillaData($request, $user);
+            $details = $this->saveVillaDetails($request, $villaId);
+            $info = $this->saveVillaInfo($request, $villaId);
+            $rules = $this->saveVillaRules($request, $villaId);
+            $images = $this->saveVillaImages($request, $villaId);
+            $search = $this->saveSearchData([
+                $request->city, $request->village, $request->max_capacity, $request->bedroom, $request->normal_cost,
+                $request->type, $request->weekly_discount, $request->monthly_discount, $request->disinfected
+            ], $villaId);
+            return response()->json(['data' => 'Villa created successfully']);  
+        });
+           
     }
-
 
     public function saveVillaData($request, $user)
     {
