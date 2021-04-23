@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function villaDates($id)
     {
-        $userId=Auth::loginUsingId(7)->id;
+        $userId=Auth::user()->id;
         $villa = Villa::where([['id',$id],['user_id',$userId]])->first();
         $dates = $villa->dates;
         $rules = $villa->rule;
@@ -125,7 +125,7 @@ class UserController extends Controller
 
     public function reservationsRequested($id)
     {
-        $userId = Auth::loginUsingId(7)->id;
+        $userId = Auth::user()->id;
         $userVillaIds=Villa::where('user_id',$userId)->pluck('id')->toArray();
         if(in_array($id,$userVillaIds)){
         $requests = ReservedDate::where('villa_id', $id)->get();
