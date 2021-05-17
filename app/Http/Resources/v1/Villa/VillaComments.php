@@ -2,8 +2,8 @@
 
 namespace App\Http\Resources\v1\Villa;
 
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Verta;
 
 class VillaComments extends ResourceCollection
 {
@@ -34,6 +34,7 @@ class VillaComments extends ResourceCollection
                     'parent_id' => $item->parent_id,
                     'text'=>$item->text,
                     'created_at'=> Verta::instance($item->created_at)->format('%Y ,%B %d'),
+                    'answer'=>$item->answer
                 ];
             }),
             'scores'=>[

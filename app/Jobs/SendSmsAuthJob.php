@@ -8,7 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Ghasedak\GhasedakApi;
+use Kavenegar;
 use Illuminate\Support\Facades\Log;
 
 class SendSmsAuthJob implements ShouldQueue
@@ -23,10 +23,10 @@ class SendSmsAuthJob implements ShouldQueue
     protected $phone_number;
     protected $code;
 
-    public function __construct($phone_number,$code)
+    public function __construct($phone_number, $code)
     {
-        $this->phone_number=$phone_number;
-        $this->code=$code;
+        $this->phone_number = $phone_number;
+        $this->code = $code;
     }
 
 
@@ -37,16 +37,12 @@ class SendSmsAuthJob implements ShouldQueue
      */
     public function handle()
     {
-        $api = new GhasedakApi(env('GHASEDAKAPI_KEY'));
-        $api->SendSimple(
-            $this->phone_number,  // receptor   
-            "باسلام کد احراز هویت شما در سایت : '.$this->code.' میباشد.Trapp.ir", // message   
-            "3000xxxxx"    // choose a line number from your account  
-        );
-        // Log::info('sms sent');
+        // Kavenegar::VerifyLookup($this->phone_number,$this->code,'','','verify');
+        Log::alert("55555555".time());
     }
 
-    public function failed(){
+    public function failed()
+    {
         Log::emergency('Job failed!');
     }
 }

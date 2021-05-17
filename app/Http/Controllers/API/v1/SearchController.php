@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\v1\Other\PopularVillasCollection;
 use App\Http\Resources\v1\Other\SearchCollection;
 use App\Models\Date;
+use App\Models\Detail;
 use App\Models\ReservedDate;
-use App\Models\Search;
+use App\Models\Rule;
 use App\Models\Villa;
 use Illuminate\Http\Request;
 use Hekmatinasser\Verta\Verta;
@@ -16,7 +17,7 @@ class SearchController extends Controller
 {
     public function search()
     {
-        $data = Villa::orderBy('id', 'desc')->with(['detail', 'rule'])->paginate(2);
+        $data = Villa::orderBy('id', 'desc')->with(['detail', 'rule'])->paginate(9);
         return new PopularVillasCollection($data);
     }
 
@@ -44,8 +45,10 @@ class SearchController extends Controller
 
         // Search by bedroom parametr => Example : bedroom=2
         $bedroom = 0;
+        $bedroomData=[];
         if (isset($_GET['bedroom'])) {
             $bedroom = $_GET['bedroom'];
+            $bedroomData=Detail::where('bedroom','>=',$bedroom)->pluck('villa_id')->toArray();
         }
 
 
@@ -53,10 +56,12 @@ class SearchController extends Controller
         $costRange = [];
         $min_cost = 0;
         $max_cost = 99999999;
+        $costRanges=[];
         if (isset($_GET['costRange'])) {
             $costRange = explode(',', $_GET['costRange']);
             $min_cost = $costRange[0] + 0;
             $max_cost = $costRange[1] + 0;
+            $costRanges = Rule::WhereBetween('normal_cost', [$min_cost, $max_cost])->pluck('villa_id')->toArray();
         }
 
 
@@ -69,15 +74,20 @@ class SearchController extends Controller
 
         // Search by passengers_count parametr => Example : passengers_count=5
         $passengers_count = 0;
+        $passengersData=[];
         if (isset($_GET['passengers_count'])) {
             $passengers_count =  $_GET['passengers_count'];
+            $passengersData=Detail::where('standard_capacity','>=',$passengers_count)->pluck('villa_id')->toArray();
         }
 
 
         // Search by discount parametr => Example : discount=1
         $discount = 0;
+        $discountedVillas=[];
         if (isset($_GET['discount'])) {
-            $discount =  1;
+            // $discount =  1;
+            $discountedVillas = Rule::where('weekly_discount','>',0)
+            ->orWhere('monthly_discount','>',0)->pluck('villa_id')->toArray();
         }
 
         // Search by disinfected parametr => Example : disinfected=1
@@ -96,26 +106,32 @@ class SearchController extends Controller
             $orderType = $searchByOrdering[1];
         }
 
-        $result = Search::when(isset($_GET['area']), function ($query) use ($areaType, $area) {
-            $query->where($areaType, 'LIKE', "%" . $area . "%");
-        })
+        $result = Villa::when(isset($_GET['area']), function ($query) use ($areaType, $area) {
+                $query->where($areaType, 'LIKE', "%" . $area . "%");
+             })
             ->when(isset($_GET['type']), function ($query) use ($type) {
-                $query->whereIn('category', $type);
-            })
-            ->when(isset($_GET['dateRange']), function ($query) use ($dateResult) {
-                $query->whereNotIn('villa_id', $dateResult);
-            })
-            ->when(isset($_GET['discount']), function ($query) use ($discount) {
-                $query->where('discount', $discount);
+                $query->whereIn('type', $type);
             })
             ->when(isset($_GET['disinfected']), function ($query) use ($disinfected) {
                 $query->where('disinfected', $disinfected);
             })
-            ->where('passengers_count', '>=', $passengers_count)
-            ->where('bedroom', '>=', $bedroom)
-            ->WhereBetween('normal_cost', [$min_cost, $max_cost])
+            ->when(isset($_GET['discount']), function ($query) use ($discountedVillas) {
+                $query->whereIn('id', $discountedVillas);
+            })
+            ->when(isset($_GET['passengers_count']), function ($query) use ($passengersData) {
+                $query->whereIn('id', $passengersData);
+            })
+            ->when(isset($_GET['bedroom']), function ($query) use ($bedroomData) {
+                $query->whereIn('id', $bedroomData);
+            })
+            ->when(isset($_GET['costRange']), function ($query) use ($costRanges) {
+                $query->whereIn('id', $costRanges);
+            })
+            ->when(isset($_GET['dateRange']), function ($query) use ($dateResult) {
+                $query->whereNotIn('id', $dateResult);
+            })
             ->orderBy($orderField, $orderType)
-            ->with(['villa', 'detail', 'rule'])
+            ->with(['detail', 'rule'])
             ->paginate(9);
 
         return new SearchCollection($result);
@@ -179,12 +195,12 @@ class SearchController extends Controller
         $max_date = str_replace(',', '-', $max_date);
 
         $dateResult1 = ReservedDate::whereBetween('start_date', [$min_date, $max_date])
-        ->orWhereBetween('end_date', [$min_date, $max_date])->pluck('villa_id')->toArray();
+            ->orWhereBetween('end_date', [$min_date, $max_date])->pluck('villa_id')->toArray();
 
-        $dateResult2 = Date::where('status',1)->whereBetween('date', [$min_date, $max_date])
-        ->pluck('villa_id')->toArray();
-    
-            return array_merge($dateResult1,$dateResult2);
+        $dateResult2 = Date::where('status', 1)->whereBetween('date', [$min_date, $max_date])
+            ->pluck('villa_id')->toArray();
+
+        return array_merge($dateResult1, $dateResult2);
     }
 
     public function searchByArea($recivedArea)

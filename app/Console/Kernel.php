@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Banner;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -25,6 +26,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        // $schedule->command('queue:work --daemon --stop-when-empty')->everyMinute()->withoutOverlapping();
+        Banner::create(['title'=>'t144444','type'=>44,'img_src'=>'4444t4ttt.eee','link'=>'44t44tt.ooo']);
     }
 
     /**

@@ -14,15 +14,21 @@ class VillaInfo extends JsonResource
      */
     public function toArray($request)
     {
+
+        $general_fac=explode(',',$this->general_fac);
+        $kitchen_fac=explode(',',$this->kitchen_fac);
+        $temp_fac=explode(',',$this->temp_fac);
+        $fac1=array_merge($general_fac,$kitchen_fac);
+        $finalFac=array_merge($temp_fac,$fac1);
+
         return [
-            'general_fac'=>explode(',',$this->general_fac),
-            'kitchen_fac'=>explode(',',$this->kitchen_fac),
-            'temp_fac'=>explode(',',$this->temp_fac),
+            'fac'=>$finalFac,
             'chef'=>$this->chef,
             'host'=>$this->host,
             'tour_guide'=>$this->tour_guide,
             'bodyguard'=>$this->bodyguard,
             'catering'=>explode(',',$this->catering)
         ];
+        
     }
 }

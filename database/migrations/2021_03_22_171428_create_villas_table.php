@@ -31,7 +31,8 @@ class CreateVillasTable extends Migration
             $table->string('main_img')->nullable();
             $table->integer('score')->nullable();
             $table->integer('status')->default(0);
-            $table->integer('disinfected')->default(0);            
+            $table->integer('disinfected')->default(0);
+            $table->bigInteger('normal_cost');            
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

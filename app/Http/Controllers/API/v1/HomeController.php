@@ -51,7 +51,7 @@ class HomeController extends Controller
     public function discountedVillas()
     {
         $data = Rule::where('weekly_discount', '>', 0)
-        ->orwhere('monthly_discount', '>', 0)->orderBy('id', 'desc')
+        ->orderBy('id', 'desc')
         ->with('villa')
         ->take('4')->get();
         return new DiscountedVillasCollection($data);

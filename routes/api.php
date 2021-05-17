@@ -18,6 +18,7 @@ Route::prefix('v1')->namespace('API\v1')->group(function () {
         Route::get('images/{id}', 'VillaController@images');
         Route::get('dates/{id}', 'VillaController@dates');
         Route::get('reservedDates/{id}', 'VillaController@reservedDates');
+        Route::get('villaPrices/{id}', 'VillaController@villaPrices');
         Route::get('similarVillas/{id}', 'VillaController@similarVillas');
         Route::post('store', 'VillaController@store')->middleware('auth:api');
     });

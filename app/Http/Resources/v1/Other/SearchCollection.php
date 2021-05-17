@@ -17,13 +17,13 @@ class SearchCollection extends ResourceCollection
         return [
             'data' => $this->collection->map(function($item) {
                 return [
-                    'id'=>$item->villa->id,
-                    'title'=>$item->villa->title,
-                    'state' => $item['villa']->state,
-                    'city' => $item['villa']->city,
-                    'village' => $item['villa']->village,
+                    'id'=>$item->id,
+                    'title'=>$item->title,
+                    'state' => $item->state,
+                    'city' => $item->city,
+                    'village' => $item->village,
                     'score' => $item->score,
-                    'main_img'=>$item['villa']->main_img,
+                    'main_img'=>$item->main_img,
                     'details' => $item['detail'],
                     'rules' => $item['rile']
                 ];

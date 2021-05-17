@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\API\v1;
 
 use App\Http\Controllers\Controller;
-use App\Jobs\SendSmsAuthJob;
+// use App\Jobs\SendSmsAuthJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Kavenegar;
 
 class AuthController extends Controller
 {
@@ -27,12 +28,13 @@ class AuthController extends Controller
         return $this->sendRegisterSms($request->phone_number, $user);
     }
 
-
+ 
     public function sendRegisterSms($phone_number, $user)
 
     {
             $code = mt_rand(100000, 999999);
-            SendSmsAuthJob::dispatch($phone_number, $code);
+            // SendSmsAuthJob::dispatch($phone_number, $code);
+            Kavenegar::VerifyLookup($phone_number,$code,'','','verify');
             $user->update([
                 'sms_code' => $code
             ]);
@@ -46,7 +48,8 @@ class AuthController extends Controller
             $codeExpire = $user->sms_expire;
             if (time() > $codeExpire) {
                 $code = mt_rand(100000, 999999);
-                SendSmsAuthJob::dispatch($phone_number, $code);
+                // SendSmsAuthJob::dispatch($phone_number, $code);
+                Kavenegar::VerifyLookup($phone_number,$code,'','','verify');
                 $user->update([
                     'sms_code' => $code,
                     'sms_expire' => time() + (60 * 3)
